@@ -11,6 +11,7 @@ namespace StoryForge.Views
     public partial class HomePage : System.Windows.Controls.Page
     {
         private readonly Config _cfg;
+        private int _focusedSeason = 1;
 
         public HomePage()
         {
@@ -19,6 +20,7 @@ namespace StoryForge.Views
             Loaded += (_, _) =>
             {
                 BgVideo.Play();
+                ((Storyboard)Resources["CardsIn"]).Begin(this);
             };
         }
 
@@ -28,53 +30,67 @@ namespace StoryForge.Views
             BgVideo.Play();
         }
 
-        private void S1_Enter(object s, MouseEventArgs e) =>
+        // Season 1
+        private void S1_Enter(object s, MouseEventArgs e)
+        {
+            _focusedSeason = 1;
             ((Storyboard)Resources["S1GlowOn"]).Begin(this);
-
+        }
         private void S1_Leave(object s, MouseEventArgs e) =>
             ((Storyboard)Resources["S1GlowOff"]).Begin(this);
-
         private void S1_Click(object s, MouseButtonEventArgs e) =>
-            LaunchOrSettings(_cfg.S1Path);
+            LaunchOrError(_cfg.S1Path, "Season 1");
 
-        private void S2_Enter(object s, MouseEventArgs e) =>
+        // Season 2
+        private void S2_Enter(object s, MouseEventArgs e)
+        {
+            _focusedSeason = 2;
             ((Storyboard)Resources["S2GlowOn"]).Begin(this);
-
+        }
         private void S2_Leave(object s, MouseEventArgs e) =>
             ((Storyboard)Resources["S2GlowOff"]).Begin(this);
-
         private void S2_Click(object s, MouseButtonEventArgs e) =>
-            LaunchOrSettings(_cfg.S2Path);
+            LaunchOrError(_cfg.S2Path, "Season 2");
 
-        private void LaunchOrSettings(string path)
+        // Enter key launches focused season
+        protected override void OnKeyDown(KeyEventArgs e)
         {
+            base.OnKeyDown(e);
+            if (e.Key == Key.Enter)
+            {
+                var path = _focusedSeason == 1 ? _cfg.S1Path : _cfg.S2Path;
+                LaunchOrError(path, $"Season {_focusedSeason}");
+            }
+        }
+
+        private void LaunchOrError(string path, string seasonName)
+        {
+            var win = Window.GetWindow(this) as MainWindow;
+
             if (!File.Exists(path))
             {
-                if (Window.GetWindow(this) is MainWindow mw)
-                    mw.Navigate(new SettingsPage());
+                new ErrorDialog(
+                    $"Could not find the {seasonName} executable.\n\nPlease go to Settings and set the correct path.",
+                    win!).ShowDialog();
                 return;
             }
 
-            // Tell MainWindow to pause music
-            if (Window.GetWindow(this) is MainWindow mainWin)
-                mainWin.PauseMusic();
+            win?.PauseMusic();
+            win?.SetDiscordState($"Playing {seasonName}");
 
             var proc = new Process
             {
                 StartInfo           = new ProcessStartInfo(path) { UseShellExecute = true },
                 EnableRaisingEvents = true
             };
-
-            // Resume music when the game process exits
             proc.Exited += (_, _) =>
             {
                 Dispatcher.Invoke(() =>
                 {
-                    if (Window.GetWindow(this) is MainWindow mw)
-                        mw.ResumeMusic();
+                    win?.ResumeMusic();
+                    win?.SetDiscordState("On the main menu");
                 });
             };
-
             proc.Start();
         }
     }
