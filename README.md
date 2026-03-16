@@ -4,17 +4,21 @@ Legal @2026
 
 ### Version: v0.5 (#C) *Still W.I.P*
 
-Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)Z
+Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 
 > A sleek, modern launcher for **Minecraft: Story Mode** Season 1 & Season 2.  
 > Built in C# + WPF. No Python. *was python*
 
 ---
 
-## Download
+## Downloads
 
 ***[StoryForge v0.5](https://github.com/B0zin0/StoryForge/releases/latest)***
-
+> A sleek, modern launcher for **Minecraft: Story Mode** Season 1 & Season 2.  
+***[MCSM S1](aHR0cHM6Ly9zdGVhbXJpcC5jb20vbWluZWNyYWZ0LXN0b3J5LW1vZGUtY29tcGxldGUtc2Vhc29uLTJxLw==)***
+> .exe of the FULL season 1 + 3 extra episodes from the "Adventure Pass". (Base64)
+***[MCSM S2](aHR0cHM6Ly9zdGVhbXJpcC5jb20vbWluZWNyYWZ0LXN0b3J5LW1vZGUtc2Vhc29uLXR3by1mcmVlLWRvd25sb2FkLTJ3Lw==)***
+> .exe of the FULL season 2. (Base64)
 ---
 
 ## Features
@@ -33,12 +37,26 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)Z
 3. Run `StoryForge.exe`
 4. Click **Settings** and point each season to its `.exe` file.
 5. Click a season to launch the game itself!
-
+< It might be a huge folder due to C# Api's not being the same as python but its still the same thing.
 ---
 
 ## Screenshots
 
-> Wont let me add it for some reason
+{
+  "date:create": "2026-03-16T12:20:06+00:00",
+  "date:modify": "2026-03-16T12:20:06+00:00",
+  "date:timestamp": "2026-03-16T12:20:06+00:00",
+  "png:gAMA": "gamma=0.45455 (See Gamma, above)",
+  "png:IHDR.bit-depth-orig": "8",
+  "png:IHDR.bit_depth": "8",
+  "png:IHDR.color-type-orig": "6",
+  "png:IHDR.color_type": "6 (RGBA)",
+  "png:IHDR.interlace_method": "0 (Not interlaced)",
+  "png:IHDR.width,height": "1605, 904",
+  "png:pHYs": "x_res=3779, y_res=3779, units=1",
+  "png:sRGB": "intent=0 (Perceptual Intent)",
+  "signature": "863b5d42358a8471ad457db91e49a09011c95aa546c8dfa69e2b5d347c18ffca"
+}
 
 ---
 
