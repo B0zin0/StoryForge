@@ -38,7 +38,7 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)Z
 
 ## Screenshots
 
-> 
+> *()*
 
 ---
 
