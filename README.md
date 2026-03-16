@@ -13,7 +13,7 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)Z
 
 ## Download
 
-**[⬇ Download StoryForge v0.5](https://github.com/B0zin0/StoryForge/releases/latest)**
+**[StoryForge v0.5](https://github.com/B0zin0/StoryForge/releases/latest)**
 
 ---
 
@@ -49,7 +49,7 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)Z
 
 ---
 
-## Building from Source
+## Modding
 
 1. Clone the repo
    ```
