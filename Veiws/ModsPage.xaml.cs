@@ -25,7 +25,6 @@ namespace StoryForge.Views
             Loaded += (_, _) => RefreshList();
         }
 
-        // ── Build mod card list ──────────────────────────────────────────
         private void RefreshList()
         {
             ModList.Children.Clear();
@@ -68,7 +67,6 @@ namespace StoryForge.Views
 
             var outer = new StackPanel();
 
-            // Top row: name + version + remove button
             var topRow = new Grid();
             topRow.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             topRow.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -118,7 +116,7 @@ namespace StoryForge.Views
             return card;
         }
 
-        // ── Install ──────────────────────────────────────────────────────
+        // ── Need to go back and redo this
         private void Install_Click(object s, RoutedEventArgs e)
         {
             var dlg = new OpenFileDialog
@@ -139,7 +137,6 @@ namespace StoryForge.Views
             RefreshList();
         }
 
-        // ── Remove ───────────────────────────────────────────────────────
         private void Remove_Click(object s, RoutedEventArgs e)
         {
             if (s is not Button btn) return;

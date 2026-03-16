@@ -25,11 +25,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Topbar -->
             <Grid Grid.Row="0" Background="#0A0A0A"
                   MouseLeftButtonDown="TopBar_MouseDown">
 
-                <!-- Logo — Minecraft font -->
                 <TextBlock Text="STORYFORGE"
                            Foreground="{StaticResource GoldBrush}"
                            FontFamily="/Assets/#Minecraft"
@@ -42,7 +40,6 @@
                     </TextBlock.Effect>
                 </TextBlock>
 
-                <!-- Nav + window buttons -->
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
@@ -64,10 +61,8 @@
                 </StackPanel>
             </Grid>
 
-            <!-- Gold divider -->
             <Rectangle Grid.Row="1" Fill="{StaticResource Gold2Brush}"/>
 
-            <!-- Page content -->
             <Frame x:Name="ContentFrame"
                    Grid.Row="2"
                    Background="Black"

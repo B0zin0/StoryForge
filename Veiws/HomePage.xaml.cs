@@ -22,14 +22,12 @@ namespace StoryForge.Views
             };
         }
 
-        // ── Video loops forever ──────────────────────────────────────────
         private void BgVideo_Ended(object s, RoutedEventArgs e)
         {
             BgVideo.Position = TimeSpan.Zero;
             BgVideo.Play();
         }
 
-        // ── Season 1 ─────────────────────────────────────────────────────
         private void S1_Enter(object s, MouseEventArgs e) =>
             ((Storyboard)Resources["S1GlowOn"]).Begin(this);
 
@@ -39,7 +37,6 @@ namespace StoryForge.Views
         private void S1_Click(object s, MouseButtonEventArgs e) =>
             LaunchOrSettings(_cfg.S1Path);
 
-        // ── Season 2 ─────────────────────────────────────────────────────
         private void S2_Enter(object s, MouseEventArgs e) =>
             ((Storyboard)Resources["S2GlowOn"]).Begin(this);
 
@@ -49,7 +46,6 @@ namespace StoryForge.Views
         private void S2_Click(object s, MouseButtonEventArgs e) =>
             LaunchOrSettings(_cfg.S2Path);
 
-        // ── Launch: pause music, start game, resume music on exit ────────
         private void LaunchOrSettings(string path)
         {
             if (!File.Exists(path))
