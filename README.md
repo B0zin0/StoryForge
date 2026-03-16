@@ -2,18 +2,18 @@
 
 Legal @2026
 
-### Version: v0.5 (#C) *Still W.I.P*
+### Version: v1.0 (#C) *Still W.I.P*
 
 Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 
 > A sleek, modern launcher for **Minecraft: Story Mode** Season 1 & Season 2.  
-> Built in C# + WPF. No Python. *was python*
+> Built in C# + WPF. No Python.
 
 ---
 
 ## Downloads
 
-***[StoryForge v0.5](https://github.com/B0zin0/StoryForge/releases/latest)***
+***[StoryForge v1.0](https://github.com/B0zin0/StoryForge/releases/latest)***
 > A sleek, modern launcher for **Minecraft: Story Mode** Season 1 & Season 2.
 
 ***[MCSM S1](aHR0cHM6Ly9zdGVhbXJpcC5jb20vbWluZWNyYWZ0LXN0b3J5LW1vZGUtY29tcGxldGUtc2Vhc29uLTJxLw==)***
@@ -29,6 +29,12 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 - Mod manager — install, view, and remove mods
 - Settings page — set your game paths, toggle music
 - Frameless custom window with drag support
+
+---
+
+## Discord Bot
+
+(https://github.com/B0zin0/StoryForgeBot/tree/main)
 
 ---
 
