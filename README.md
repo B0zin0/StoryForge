@@ -14,9 +14,11 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 ## Downloads
 
 ***[StoryForge v0.5](https://github.com/B0zin0/StoryForge/releases/latest)***
-> A sleek, modern launcher for **Minecraft: Story Mode** Season 1 & Season 2.  
+> A sleek, modern launcher for **Minecraft: Story Mode** Season 1 & Season 2.
+
 ***[MCSM S1](aHR0cHM6Ly9zdGVhbXJpcC5jb20vbWluZWNyYWZ0LXN0b3J5LW1vZGUtY29tcGxldGUtc2Vhc29uLTJxLw==)***
 > .exe of the FULL season 1 + 3 extra episodes from the "Adventure Pass". (Base64)
+
 ***[MCSM S2](aHR0cHM6Ly9zdGVhbXJpcC5jb20vbWluZWNyYWZ0LXN0b3J5LW1vZGUtc2Vhc29uLXR3by1mcmVlLWRvd25sb2FkLTJ3Lw==)***
 > .exe of the FULL season 2. (Base64)
 ---
@@ -42,21 +44,10 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 
 ## Screenshots
 
-{
-  "date:create": "2026-03-16T12:20:06+00:00",
-  "date:modify": "2026-03-16T12:20:06+00:00",
-  "date:timestamp": "2026-03-16T12:20:06+00:00",
-  "png:gAMA": "gamma=0.45455 (See Gamma, above)",
-  "png:IHDR.bit-depth-orig": "8",
-  "png:IHDR.bit_depth": "8",
-  "png:IHDR.color-type-orig": "6",
-  "png:IHDR.color_type": "6 (RGBA)",
-  "png:IHDR.interlace_method": "0 (Not interlaced)",
-  "png:IHDR.width,height": "1605, 904",
-  "png:pHYs": "x_res=3779, y_res=3779, units=1",
-  "png:sRGB": "intent=0 (Perceptual Intent)",
-  "signature": "863b5d42358a8471ad457db91e49a09011c95aa546c8dfa69e2b5d347c18ffca"
-}
+https://image2url.com/r2/default/images/1773663743803-463e5c98-6f56-4353-a3ec-88a3eabe0a0a.png
+https://image2url.com/r2/default/images/1773663780582-3f9e455d-cba3-452b-865c-d40c81135ddb.png
+https://image2url.com/r2/default/images/1773663798091-a43cc9e9-247d-48c6-8ba8-06e5e0478a4d.png
+https://image2url.com/r2/default/images/1773663834695-0adab6a9-a8f5-4b37-8254-ffa8898eebe2.png
 
 ---
 
