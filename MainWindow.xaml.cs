@@ -26,7 +26,6 @@ namespace StoryForge
         {
             InitializeComponent();
 
-            // Apply saved window size
             Width  = AppConfig.WindowWidth;
             Height = AppConfig.WindowHeight;
 
@@ -40,7 +39,6 @@ namespace StoryForge
         {
             var splash = new SplashWindow();
             splash.Show();
-            // Auto-close after steps finish (4 steps × 450ms + buffer)
             var timer = new System.Windows.Threading.DispatcherTimer
             {
                 Interval = TimeSpan.FromMilliseconds(2200)

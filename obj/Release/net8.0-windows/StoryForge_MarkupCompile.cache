@@ -1,5 +1,5 @@
 ﻿StoryForge
-
+1.0.0
 
 winexe
 C#
@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NET;NET8_0;NETCOREAPP
 C:\Users\bunzy\StoryForge\App.xaml
-5-1563032568
+81763545213
 61566012150
-9369299788
-1981839832580
-MainWindow.xaml;Veiws\AboutPage.xaml;Veiws\HomePage.xaml;Veiws\ModsPage.xaml;Veiws\SettingsPage.xaml;
+12-2057998157
+200-327312826
+MainWindow.xaml;Veiws\AboutPage.xaml;Veiws\ErrorDialog.xaml;Veiws\HomePage.xaml;Veiws\ModInstallDialog.xaml;Veiws\ModsPage.xaml;Veiws\SettingsPage.xaml;Veiws\SplashScreen.xaml;
 
 False
 

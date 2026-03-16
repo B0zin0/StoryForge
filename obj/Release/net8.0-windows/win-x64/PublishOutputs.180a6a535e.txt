@@ -468,3 +468,5 @@ C:\Users\bunzy\StoryForge\publish\zh-Hant\UIAutomationProvider.resources.dll
 C:\Users\bunzy\StoryForge\publish\zh-Hant\UIAutomationTypes.resources.dll
 C:\Users\bunzy\StoryForge\publish\zh-Hant\WindowsBase.resources.dll
 C:\Users\bunzy\StoryForge\publish\zh-Hant\WindowsFormsIntegration.resources.dll
+C:\Users\bunzy\StoryForge\publish\DiscordRPC.dll
+C:\Users\bunzy\StoryForge\publish\Newtonsoft.Json.dll

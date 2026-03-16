@@ -494,3 +494,12 @@ C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\refint\StoryForge.d
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\StoryForge.pdb
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\StoryForge.genruntimeconfig.cache
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\ref\StoryForge.dll
+C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\DiscordRPC.dll
+C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Newtonsoft.Json.dll
+C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\StoryForge.csproj.AssemblyReference.cache
+C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\ErrorDialog.baml
+C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\ModInstallDialog.baml
+C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\SplashScreen.baml
+C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\ErrorDialog.g.cs
+C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\ModInstallDialog.g.cs
+C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\SplashScreen.g.cs

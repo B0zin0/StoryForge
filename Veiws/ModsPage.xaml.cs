@@ -237,7 +237,7 @@ namespace StoryForge.Views
         {
             var dlg = new OpenFileDialog
             {
-                Filter = "Mod files|*.zip;*.landb;*.pak|All files|*.*",
+                Filter = "Mod files|*.zip;*.landb;*.pak;*.d3dtx;*.bank;*.lua;*.ttarch2|All files|*.*",
                 Title  = "Select mod file"
             };
             if (dlg.ShowDialog() != true) return;
