@@ -11,11 +11,9 @@ namespace StoryForge
 {
     public partial class MainWindow : Window
     {
-        // Shared state
         public static Config        AppConfig { get; private set; } = Config.Load();
         public static ModsMetaStore ModsMeta  { get; private set; } = ModsMetaStore.Load();
 
-        // Music player
         private readonly MediaPlayer _music = new();
 
         public MainWindow()
@@ -25,7 +23,6 @@ namespace StoryForge
             Navigate(new HomePage());
         }
 
-        // ── Music ────────────────────────────────────────────────────────
         private void StartMusic()
         {
             if (!AppConfig.Music) return;
@@ -35,7 +32,7 @@ namespace StoryForge
             if (!File.Exists(path)) return;
 
             _music.Open(new Uri(path));
-            _music.Volume           = 0.20;   // 20% volume
+            _music.Volume           = 0.20;   
             _music.MediaEnded      += (_, _) =>
             {
                 _music.Position = TimeSpan.Zero;
@@ -47,7 +44,6 @@ namespace StoryForge
         public void PauseMusic()  => _music.Pause();
         public void ResumeMusic() => _music.Play();
 
-        // ── Navigation ───────────────────────────────────────────────────
         public void Navigate(System.Windows.Controls.Page page)
         {
             ContentFrame.Opacity = 0;
@@ -60,7 +56,6 @@ namespace StoryForge
         private void Nav_Mods(object s, RoutedEventArgs e)     => Navigate(new ModsPage());
         private void Nav_Settings(object s, RoutedEventArgs e) => Navigate(new SettingsPage());
 
-        // ── Window chrome ─────────────────────────────────────────────────
         private void TopBar_MouseDown(object s, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left) DragMove();

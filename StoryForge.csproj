@@ -8,11 +8,9 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>StoryForge</AssemblyName>
     <RootNamespace>StoryForge</RootNamespace>
-    <!-- Embed the app icon -->
     <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
   </PropertyGroup>
 
-  <!-- Copy assets to output folder automatically -->
   <ItemGroup>
     <Content Include="Assets\**\*"
              CopyToOutputDirectory="PreserveNewest"/>

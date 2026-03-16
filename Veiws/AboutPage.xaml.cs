@@ -4,7 +4,6 @@ using System.Windows.Controls;
 
 namespace StoryForge.Views
 {
-    // Simple label/value pair for the ItemsControl
     public record InfoRow(string Label, string Value);
 
     public partial class AboutPage : Page
