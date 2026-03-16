@@ -1,5 +1,5 @@
 # StoryForge
-Here's an open-source Mod Launcher just for MCSM! Made by (@B0Zin0)
+Here's an open-source Launcher+Mod Loader just for MCSM! Made by (@B0Zin0)
 
 #What it can do.
 Fully Supports mods with ant telltalle files such as dialoge changes.
