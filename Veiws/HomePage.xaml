@@ -10,9 +10,63 @@
             <Setter Property="BorderThickness" Value="3"/>
             <Setter Property="Cursor"          Value="Hand"/>
             <Setter Property="Width"           Value="300"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
         </Style>
 
-        <!-- Season 1 glow — purple -->
+        <!-- Card load animations — staggered scale-up -->
+        <Storyboard x:Key="CardsIn">
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="S1Scale"
+                Storyboard.TargetProperty="ScaleX">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="0.8"/>
+                <EasingDoubleKeyFrame   KeyTime="0:0:0.35" Value="1.0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="S1Scale"
+                Storyboard.TargetProperty="ScaleY">
+                <DiscreteDoubleKeyFrame KeyTime="0" Value="0.8"/>
+                <EasingDoubleKeyFrame   KeyTime="0:0:0.35" Value="1.0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="S1Border"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:0.3"/>
+
+            <!-- S2 staggered 120ms later -->
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="S2Scale"
+                Storyboard.TargetProperty="ScaleX">
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0.12" Value="0.8"/>
+                <EasingDoubleKeyFrame   KeyTime="0:0:0.47" Value="1.0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames
+                Storyboard.TargetName="S2Scale"
+                Storyboard.TargetProperty="ScaleY">
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0.12" Value="0.8"/>
+                <EasingDoubleKeyFrame   KeyTime="0:0:0.47" Value="1.0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.3"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimation Storyboard.TargetName="S2Border"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1"
+                             BeginTime="0:0:0.12" Duration="0:0:0.3"/>
+        </Storyboard>
+
+        <!-- Glow on/off — S1 purple -->
         <Storyboard x:Key="S1GlowOn">
             <ColorAnimation Storyboard.TargetName="S1Border"
                             Storyboard.TargetProperty="BorderBrush.Color"
@@ -30,7 +84,7 @@
                              To="10" Duration="0:0:0.2"/>
         </Storyboard>
 
-        <!-- Season 2 glow — teal -->
+        <!-- Glow on/off — S2 teal -->
         <Storyboard x:Key="S2GlowOn">
             <ColorAnimation Storyboard.TargetName="S2Border"
                             Storyboard.TargetProperty="BorderBrush.Color"
@@ -51,8 +105,7 @@
     </Page.Resources>
 
     <Grid>
-
-        <!-- Video background (muted, looping) -->
+        <!-- Video background -->
         <MediaElement x:Name="BgVideo"
                       Source="Assets/bg_video.mp4"
                       IsMuted="True"
@@ -60,79 +113,86 @@
                       LoadedBehavior="Manual"
                       MediaEnded="BgVideo_Ended"/>
 
-        <!-- Dark overlay so cards stay readable -->
+        <!-- Dark overlay -->
         <Rectangle Fill="#72000000"/>
 
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Viewbox Stretch="Uniform">
+            <StackPanel Width="1280" Height="682"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
 
-            <!-- Title -->
-            <TextBlock Text="[ SELECT SEASON ]"
-                       Foreground="{StaticResource GoldBrush}"
-                       FontFamily="/Assets/#Minecraft"
-                       FontSize="26"
-                       HorizontalAlignment="Center"
-                       Margin="0,0,0,48">
-                <TextBlock.Effect>
-                    <DropShadowEffect Color="#FFAA00" BlurRadius="18"
-                                      ShadowDepth="0" Opacity="0.6"/>
-                </TextBlock.Effect>
-            </TextBlock>
+                <!-- Title -->
+                <TextBlock Text="[ SELECT SEASON ]"
+                           Foreground="{StaticResource GoldBrush}"
+                           FontFamily="/Assets/#Minecraft"
+                           FontSize="26"
+                           HorizontalAlignment="Center"
+                           Margin="0,80,0,48">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="#FFAA00" BlurRadius="18"
+                                          ShadowDepth="0" Opacity="0.6"/>
+                    </TextBlock.Effect>
+                </TextBlock>
 
-            <!-- Cards row -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <!-- Cards -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                <!-- Season 1 -->
-                <Border x:Name="S1Border"
-                        Style="{StaticResource CardBorder}"
-                        BorderBrush="{StaticResource GoldBrush}"
-                        Margin="0,0,50,0"
-                        MouseEnter="S1_Enter" MouseLeave="S1_Leave"
-                        MouseLeftButtonDown="S1_Click">
-                    <Border.Effect>
-                        <DropShadowEffect x:Name="S1Glow"
-                                          Color="#AA44FF" BlurRadius="10"
-                                          ShadowDepth="0" Opacity="0.9"/>
-                    </Border.Effect>
-                    <StackPanel>
-                        <Image Source="/Assets/season1.png"
-                               Height="420" Stretch="UniformToFill"/>
-                        <Border Background="#0D0D0D" Height="56">
-                            <TextBlock Text="SEASON 1"
-                                       Foreground="{StaticResource GoldBrush}"
-                                       FontFamily="/Assets/#Minecraft"
-                                       FontSize="15"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                        </Border>
-                    </StackPanel>
-                </Border>
+                    <!-- Season 1 -->
+                    <Border x:Name="S1Border"
+                            Style="{StaticResource CardBorder}"
+                            BorderBrush="{StaticResource GoldBrush}"
+                            Margin="0,0,50,0" Opacity="0"
+                            MouseEnter="S1_Enter" MouseLeave="S1_Leave"
+                            MouseLeftButtonDown="S1_Click">
+                        <Border.RenderTransform>
+                            <ScaleTransform x:Name="S1Scale" ScaleX="0.8" ScaleY="0.8"/>
+                        </Border.RenderTransform>
+                        <Border.Effect>
+                            <DropShadowEffect x:Name="S1Glow" Color="#AA44FF"
+                                              BlurRadius="10" ShadowDepth="0" Opacity="0.9"/>
+                        </Border.Effect>
+                        <StackPanel>
+                            <Image Source="/Assets/season1.png"
+                                   Height="420" Stretch="UniformToFill"/>
+                            <Border Background="#0D0D0D" Height="56">
+                                <TextBlock Text="SEASON 1"
+                                           Foreground="{StaticResource GoldBrush}"
+                                           FontFamily="/Assets/#Minecraft" FontSize="15"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
 
-                <!-- Season 2 -->
-                <Border x:Name="S2Border"
-                        Style="{StaticResource CardBorder}"
-                        BorderBrush="{StaticResource GoldBrush}"
-                        MouseEnter="S2_Enter" MouseLeave="S2_Leave"
-                        MouseLeftButtonDown="S2_Click">
-                    <Border.Effect>
-                        <DropShadowEffect x:Name="S2Glow"
-                                          Color="#00FFAA" BlurRadius="10"
-                                          ShadowDepth="0" Opacity="0.9"/>
-                    </Border.Effect>
-                    <StackPanel>
-                        <Image Source="/Assets/season2.png"
-                               Height="420" Stretch="UniformToFill"/>
-                        <Border Background="#0D0D0D" Height="56">
-                            <TextBlock Text="SEASON 2"
-                                       Foreground="{StaticResource GoldBrush}"
-                                       FontFamily="/Assets/#Minecraft"
-                                       FontSize="15"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                        </Border>
-                    </StackPanel>
-                </Border>
+                    <!-- Season 2 -->
+                    <Border x:Name="S2Border"
+                            Style="{StaticResource CardBorder}"
+                            BorderBrush="{StaticResource GoldBrush}"
+                            Opacity="0"
+                            MouseEnter="S2_Enter" MouseLeave="S2_Leave"
+                            MouseLeftButtonDown="S2_Click">
+                        <Border.RenderTransform>
+                            <ScaleTransform x:Name="S2Scale" ScaleX="0.8" ScaleY="0.8"/>
+                        </Border.RenderTransform>
+                        <Border.Effect>
+                            <DropShadowEffect x:Name="S2Glow" Color="#00FFAA"
+                                              BlurRadius="10" ShadowDepth="0" Opacity="0.9"/>
+                        </Border.Effect>
+                        <StackPanel>
+                            <Image Source="/Assets/season2.png"
+                                   Height="420" Stretch="UniformToFill"/>
+                            <Border Background="#0D0D0D" Height="56">
+                                <TextBlock Text="SEASON 2"
+                                           Foreground="{StaticResource GoldBrush}"
+                                           FontFamily="/Assets/#Minecraft" FontSize="15"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
 
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Viewbox>
     </Grid>
 </Page>

@@ -1,5 +1,8 @@
 {
   "S1Path": "C:\\Users\\bunzy\\Downloads\\Games\\Minecraft - Story Mode\\MinecraftStoryMode.exe",
   "S2Path": "",
-  "Music": true
+  "Music": true,
+  "Volume": 0.25,
+  "WindowWidth": 1280,
+  "WindowHeight": 720
 }

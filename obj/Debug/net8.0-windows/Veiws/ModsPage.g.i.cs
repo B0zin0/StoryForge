@@ -60,7 +60,7 @@ namespace StoryForge.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/StoryForge;component/veiws/modspage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/StoryForge;V1.0.0;component/veiws/modspage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Veiws\ModsPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

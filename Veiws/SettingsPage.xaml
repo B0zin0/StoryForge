@@ -4,27 +4,25 @@
       Background="Black">
 
     <Grid>
-        <!-- Centre panel -->
         <Border Background="{StaticResource PanelBrush}"
                 BorderBrush="{StaticResource Gold2Brush}"
                 BorderThickness="2"
-                Width="560" VerticalAlignment="Center"
+                Width="580" VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Padding="32,28">
-
             <StackPanel>
 
-                <!-- Title -->
                 <TextBlock Text="SETTINGS"
                            Style="{StaticResource SectionTitle}"
+                           FontFamily="/Assets/#Minecraft" FontSize="18"
                            HorizontalAlignment="Center"/>
                 <Rectangle Height="2" Fill="{StaticResource GoldBrush}"
-                           Margin="0,8,0,24"/>
+                           Margin="0,8,0,20"/>
 
                 <!-- Season 1 path -->
                 <TextBlock Text="Season 1 .exe:" Style="{StaticResource McLabel}"
                            Margin="0,0,0,4"/>
-                <Grid Margin="0,0,0,16">
+                <Grid Margin="0,0,0,14">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
@@ -40,7 +38,7 @@
                 <!-- Season 2 path -->
                 <TextBlock Text="Season 2 .exe:" Style="{StaticResource McLabel}"
                            Margin="0,0,0,4"/>
-                <Grid Margin="0,0,0,20">
+                <Grid Margin="0,0,0,16">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
@@ -53,16 +51,54 @@
                             Click="Browse_S2"/>
                 </Grid>
 
-                <!-- Music toggle -->
-                <TextBlock Text="Music on startup:" Style="{StaticResource McLabel}"
+                <!-- Music + volume -->
+                <TextBlock Text="Music:" Style="{StaticResource McLabel}"
                            Margin="0,0,0,6"/>
-                <CheckBox x:Name="MusicCheck"
-                          Content="Enabled"
-                          Foreground="{StaticResource GrayBrush}"
-                          FontFamily="Segoe UI" FontSize="11"
-                          Margin="0,0,0,24"/>
+                <Grid Margin="0,0,0,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="MusicCheck" Grid.Column="0"
+                              Content="Enabled"
+                              Foreground="{StaticResource GrayBrush}"
+                              FontFamily="Segoe UI" FontSize="11"
+                              VerticalAlignment="Center"
+                              Margin="0,0,12,0"
+                              Checked="Music_Changed" Unchecked="Music_Changed"/>
+                    <Slider x:Name="VolumeSlider" Grid.Column="1"
+                            Minimum="0" Maximum="1"
+                            TickFrequency="0.05"
+                            IsSnapToTickEnabled="True"
+                            VerticalAlignment="Center"
+                            ValueChanged="Volume_Changed"/>
+                    <TextBlock x:Name="VolumeLabel" Grid.Column="2"
+                               Foreground="{StaticResource GrayBrush}"
+                               FontFamily="Segoe UI" FontSize="11"
+                               VerticalAlignment="Center"
+                               Margin="8,0,0,0" Width="36"/>
+                </Grid>
 
-                <!-- Buttons row -->
+                <!-- Window size presets -->
+                <TextBlock Text="Window size:" Style="{StaticResource McLabel}"
+                           Margin="0,14,0,8"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                    <Button Content="900×600"  Style="{StaticResource McButton}"
+                            Padding="10,5" Margin="0,0,8,0"
+                            Click="Preset_900"/>
+                    <Button Content="1280×720" Style="{StaticResource McButton}"
+                            Padding="10,5" Margin="0,0,8,0"
+                            Click="Preset_1280"/>
+                    <Button Content="1600×900" Style="{StaticResource McButton}"
+                            Padding="10,5" Margin="0,0,8,0"
+                            Click="Preset_1600"/>
+                    <Button Content="Fullscreen" Style="{StaticResource GoldButton}"
+                            Padding="10,5"
+                            Click="Preset_Full"/>
+                </StackPanel>
+
+                <!-- Buttons -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Content="SAVE" Style="{StaticResource GoldButton}"
                             Margin="0,0,12,0" Click="Save_Click"/>
@@ -70,11 +106,10 @@
                             Click="Back_Click"/>
                 </StackPanel>
 
-                <!-- Save confirmation -->
                 <TextBlock x:Name="SavedLabel" Text=""
                            Foreground="{StaticResource GreenBrush}"
                            FontFamily="Segoe UI" FontSize="11"
-                           HorizontalAlignment="Center" Margin="0,12,0,0"/>
+                           HorizontalAlignment="Center" Margin="0,10,0,0"/>
 
             </StackPanel>
         </Border>

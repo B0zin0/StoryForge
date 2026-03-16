@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
@@ -8,11 +9,13 @@ namespace StoryForge.Models
     {
         public string Description { get; set; } = "No description";
         public string Version     { get; set; } = "1.0";
+        public string Category    { get; set; } = "Other";
+        public bool   Enabled     { get; set; } = true;
+        public long   FileSize    { get; set; } = 0;
     }
 
     public class ModsMetaStore
     {
-        // filename → metadata
         public Dictionary<string, ModInfo> Mods { get; set; } = new();
 
         private static readonly string FilePath =

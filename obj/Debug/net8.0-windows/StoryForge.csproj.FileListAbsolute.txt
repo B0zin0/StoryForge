@@ -34,3 +34,13 @@ C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\StoryForge.pdb
 C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\StoryForge.genruntimeconfig.cache
 C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\ref\StoryForge.dll
 C:\Users\bunzy\StoryForge\bin\Debug\net8.0-windows\Assets\Minecraft.ttf
+C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\StoryForge.csproj.AssemblyReference.cache
+C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\Veiws\ErrorDialog.baml
+C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\Veiws\ModInstallDialog.baml
+C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\Veiws\SplashScreen.baml
+C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\Veiws\ErrorDialog.g.cs
+C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\Veiws\ModInstallDialog.g.cs
+C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\Veiws\SplashScreen.g.cs
+C:\Users\bunzy\StoryForge\bin\Debug\net8.0-windows\DiscordRPC.dll
+C:\Users\bunzy\StoryForge\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\bunzy\StoryForge\obj\Debug\net8.0-windows\StoryForge.csproj.Up2Date
