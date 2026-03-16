@@ -1,0 +1,11 @@
+{
+  "Mods": {
+    "skM1_sorenArmored.d3dtx": {
+      "Description": "Soren",
+      "Version": "1.0",
+      "Category": "Texture",
+      "Enabled": true,
+      "FileSize": 8457
+    }
+  }
+}

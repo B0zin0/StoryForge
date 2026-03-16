@@ -11,7 +11,6 @@ namespace StoryForge
 
             var mainWindow = new MainWindow();
 
-            // Show splash on top
             var splash = new SplashWindow();
             splash.Show();
 
