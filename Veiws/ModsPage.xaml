@@ -1,0 +1,55 @@
+<Page x:Class="StoryForge.Views.ModsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="Black">
+
+    <Grid>
+        <Border Background="{StaticResource PanelBrush}"
+                BorderBrush="{StaticResource Gold2Brush}"
+                BorderThickness="2"
+                Width="620" VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                MaxHeight="560"
+                Padding="28,24">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>  <!-- title -->
+                    <RowDefinition Height="Auto"/>  <!-- divider -->
+                    <RowDefinition Height="Auto"/>  <!-- toolbar -->
+                    <RowDefinition Height="*"/>     <!-- list -->
+                    <RowDefinition Height="Auto"/>  <!-- back -->
+                </Grid.RowDefinitions>
+
+                <!-- Title -->
+                <TextBlock Grid.Row="0" Text="MOD MANAGER"
+                           Style="{StaticResource SectionTitle}"
+                           HorizontalAlignment="Center"/>
+                <Rectangle Grid.Row="1" Height="2"
+                           Fill="{StaticResource GoldBrush}"
+                           Margin="0,8,0,12"/>
+
+                <!-- Toolbar -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal"
+                            Margin="0,0,0,10">
+                    <Button Content="+ INSTALL MOD"
+                            Style="{StaticResource GoldButton}"
+                            Click="Install_Click"/>
+                </StackPanel>
+
+                <!-- Scrollable mod list -->
+                <ScrollViewer Grid.Row="3"
+                              VerticalScrollBarVisibility="Auto"
+                              MaxHeight="320">
+                    <StackPanel x:Name="ModList" Background="#101010"/>
+                </ScrollViewer>
+
+                <!-- Back -->
+                <Button Grid.Row="4" Content="BACK"
+                        Style="{StaticResource McButton}"
+                        HorizontalAlignment="Center"
+                        Margin="0,14,0,0"
+                        Click="Back_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

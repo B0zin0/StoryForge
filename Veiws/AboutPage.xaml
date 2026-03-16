@@ -1,0 +1,52 @@
+<Page x:Class="StoryForge.Views.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="Black">
+
+    <Grid>
+        <Border Background="{StaticResource PanelBrush}"
+                BorderBrush="{StaticResource Gold2Brush}"
+                BorderThickness="2"
+                Width="460" VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Padding="32,28">
+            <StackPanel>
+
+                <TextBlock Text="STORYFORGE"
+                           Style="{StaticResource SectionTitle}"
+                           HorizontalAlignment="Center"/>
+                <Rectangle Height="2" Fill="{StaticResource GoldBrush}"
+                           Margin="0,8,0,24"/>
+
+                <!-- Info rows populated from code-behind -->
+                <ItemsControl x:Name="InfoItems">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,0,10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           Text="{Binding Label}"
+                                           Foreground="{StaticResource GoldBrush}"
+                                           FontFamily="Segoe UI" FontWeight="Bold"
+                                           FontSize="11"/>
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Value}"
+                                           Foreground="{StaticResource GrayBrush}"
+                                           FontFamily="Segoe UI" FontSize="11"
+                                           TextWrapping="Wrap"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <Button Content="BACK" Style="{StaticResource McButton}"
+                        HorizontalAlignment="Center"
+                        Margin="0,20,0,0" Click="Back_Click"/>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

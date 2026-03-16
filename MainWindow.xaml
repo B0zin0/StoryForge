@@ -1,0 +1,78 @@
+<Window x:Class="StoryForge.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="StoryForge — MCSM Launcher"
+        Height="720" Width="1280"
+        MinHeight="600" MinWidth="900"
+        WindowStartupLocation="CenterScreen"
+        Background="Black"
+        WindowStyle="None"
+        AllowsTransparency="True">
+
+    <Window.Resources>
+        <Storyboard x:Key="PageFadeIn">
+            <DoubleAnimation Storyboard.TargetName="ContentFrame"
+                             Storyboard.TargetProperty="Opacity"
+                             From="0" To="1" Duration="0:0:0.25"/>
+        </Storyboard>
+    </Window.Resources>
+
+    <Border BorderBrush="{StaticResource Gold2Brush}" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Topbar -->
+            <Grid Grid.Row="0" Background="#0A0A0A"
+                  MouseLeftButtonDown="TopBar_MouseDown">
+
+                <!-- Logo — Minecraft font -->
+                <TextBlock Text="STORYFORGE"
+                           Foreground="{StaticResource GoldBrush}"
+                           FontFamily="/Assets/#Minecraft"
+                           FontSize="14"
+                           VerticalAlignment="Center"
+                           Margin="14,0,0,0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="#FFAA00" BlurRadius="10"
+                                          ShadowDepth="0" Opacity="0.5"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <!-- Nav + window buttons -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Margin="0,0,8,0">
+                    <Button Content="ABOUT"    Style="{StaticResource NavButton}"
+                            FontFamily="/Assets/#Minecraft" FontSize="10"
+                            Click="Nav_About"/>
+                    <Button Content="MODS"     Style="{StaticResource NavButton}"
+                            FontFamily="/Assets/#Minecraft" FontSize="10"
+                            Click="Nav_Mods"/>
+                    <Button Content="SETTINGS" Style="{StaticResource NavButton}"
+                            FontFamily="/Assets/#Minecraft" FontSize="10"
+                            Click="Nav_Settings"/>
+                    <Button Content="—" Style="{StaticResource NavButton}"
+                            Padding="10,6" Click="Minimize_Click"/>
+                    <Button Content="✕" Style="{StaticResource NavButton}"
+                            Padding="10,6" Foreground="{StaticResource RedBrush}"
+                            Click="Close_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <!-- Gold divider -->
+            <Rectangle Grid.Row="1" Fill="{StaticResource Gold2Brush}"/>
+
+            <!-- Page content -->
+            <Frame x:Name="ContentFrame"
+                   Grid.Row="2"
+                   Background="Black"
+                   NavigationUIVisibility="Hidden"
+                   Opacity="1"/>
+        </Grid>
+    </Border>
+</Window>

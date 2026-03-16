@@ -1,0 +1,82 @@
+<Page x:Class="StoryForge.Views.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="Black">
+
+    <Grid>
+        <!-- Centre panel -->
+        <Border Background="{StaticResource PanelBrush}"
+                BorderBrush="{StaticResource Gold2Brush}"
+                BorderThickness="2"
+                Width="560" VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Padding="32,28">
+
+            <StackPanel>
+
+                <!-- Title -->
+                <TextBlock Text="SETTINGS"
+                           Style="{StaticResource SectionTitle}"
+                           HorizontalAlignment="Center"/>
+                <Rectangle Height="2" Fill="{StaticResource GoldBrush}"
+                           Margin="0,8,0,24"/>
+
+                <!-- Season 1 path -->
+                <TextBlock Text="Season 1 .exe:" Style="{StaticResource McLabel}"
+                           Margin="0,0,0,4"/>
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="S1PathBox" Grid.Column="0"
+                             Style="{StaticResource McTextBox}"/>
+                    <Button Content="..." Grid.Column="1"
+                            Style="{StaticResource McButton}"
+                            Padding="12,5" Margin="6,0,0,0"
+                            Click="Browse_S1"/>
+                </Grid>
+
+                <!-- Season 2 path -->
+                <TextBlock Text="Season 2 .exe:" Style="{StaticResource McLabel}"
+                           Margin="0,0,0,4"/>
+                <Grid Margin="0,0,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="S2PathBox" Grid.Column="0"
+                             Style="{StaticResource McTextBox}"/>
+                    <Button Content="..." Grid.Column="1"
+                            Style="{StaticResource McButton}"
+                            Padding="12,5" Margin="6,0,0,0"
+                            Click="Browse_S2"/>
+                </Grid>
+
+                <!-- Music toggle -->
+                <TextBlock Text="Music on startup:" Style="{StaticResource McLabel}"
+                           Margin="0,0,0,6"/>
+                <CheckBox x:Name="MusicCheck"
+                          Content="Enabled"
+                          Foreground="{StaticResource GrayBrush}"
+                          FontFamily="Segoe UI" FontSize="11"
+                          Margin="0,0,0,24"/>
+
+                <!-- Buttons row -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Content="SAVE" Style="{StaticResource GoldButton}"
+                            Margin="0,0,12,0" Click="Save_Click"/>
+                    <Button Content="BACK" Style="{StaticResource McButton}"
+                            Click="Back_Click"/>
+                </StackPanel>
+
+                <!-- Save confirmation -->
+                <TextBlock x:Name="SavedLabel" Text=""
+                           Foreground="{StaticResource GreenBrush}"
+                           FontFamily="Segoe UI" FontSize="11"
+                           HorizontalAlignment="Center" Margin="0,12,0,0"/>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

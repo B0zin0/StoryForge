@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoryForge", "StoryForge.csproj", "{F70FE1EF-0B6E-A57F-9894-847EC8C97323}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F70FE1EF-0B6E-A57F-9894-847EC8C97323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F70FE1EF-0B6E-A57F-9894-847EC8C97323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F70FE1EF-0B6E-A57F-9894-847EC8C97323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F70FE1EF-0B6E-A57F-9894-847EC8C97323}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16F4AFCD-8620-43F5-99B4-008A92D616FB}
+	EndGlobalSection
+EndGlobal
