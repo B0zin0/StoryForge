@@ -1,10 +1,8 @@
-Downlaod Here: https://github.com/B0zin0/StoryForge/releases/tag/v0.5
+# StoryForge Launcher
 
 Legal @2026
 
-# StoryForge Launcher
-
-### Version: v0.5 (#C)
+### Version: v0.5 (#C) *Still W.I.P*
 
 Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)Z
 
