@@ -34,12 +34,6 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 
 ---
 
-## Discord Bot
-
-(https://github.com/B0zin0/StoryForgeBot/tree/main)
-
----
-
 ## How to Use
 
 1. Download the latest release from the link/links above.
