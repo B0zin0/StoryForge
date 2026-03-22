@@ -152,7 +152,7 @@
                                               BlurRadius="10" ShadowDepth="0" Opacity="0.9"/>
                         </Border.Effect>
                         <StackPanel>
-                            <Image Source="/Assets/season1.png"
+                            <Image x:Name="S1Image"
                                    Height="420" Stretch="UniformToFill"/>
                             <Border Background="#0D0D0D" Height="56">
                                 <TextBlock Text="SEASON 1"
@@ -179,7 +179,7 @@
                                               BlurRadius="10" ShadowDepth="0" Opacity="0.9"/>
                         </Border.Effect>
                         <StackPanel>
-                            <Image Source="/Assets/season2.png"
+                            <Image x:Name="S2Image"
                                    Height="420" Stretch="UniformToFill"/>
                             <Border Background="#0D0D0D" Height="56">
                                 <TextBlock Text="SEASON 2"

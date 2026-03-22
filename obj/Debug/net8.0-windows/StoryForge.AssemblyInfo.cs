@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StoryForge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64d7f3150efa248495b80de7b059ca887c19f51e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f6dede31d14f0f01400dbbc79df18631fd277ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("StoryForge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StoryForge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0")]

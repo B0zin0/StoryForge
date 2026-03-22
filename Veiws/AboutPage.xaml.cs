@@ -20,6 +20,7 @@ namespace StoryForge.Views
             {
                 new("Version",     "1.0+"),
                 new("Created by",  "B0zin0"),
+		new("Contributors",  "xd89271"),
                 new("Built with",  "C# + WPF"),
                 new("Supports",    "Season 1 & Season 2 + Mods"),
                 new("Disclaimer",  "Not affiliated with Telltale Games"),

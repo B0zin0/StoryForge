@@ -86,7 +86,7 @@ namespace StoryForge
                     Assets  = new Assets
                     {
                         LargeImageKey  = "storyforge",
-                        LargeImageText = "StoryForge v1.0"
+                        LargeImageText = "StoryForge v1.0+"
                     },
                     Timestamps = Timestamps.Now
                 });

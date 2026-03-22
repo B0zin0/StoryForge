@@ -1,9 +1,3 @@
-C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\bg_video.mp4
-C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\icon.ico
-C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\Minecraft.ttf
-C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\season1.png
-C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\season2.png
-C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\theme.mp3
 C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\StoryForge.exe
 C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\StoryForge.deps.json
 C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\StoryForge.runtimeconfig.json
@@ -480,7 +474,6 @@ C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\HomePage.g.cs
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\ModsPage.g.cs
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\SettingsPage.g.cs
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\App.g.cs
-C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\StoryForge_Content.g.cs
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\StoryForge_MarkupCompile.cache
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\StoryForge.g.resources
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\StoryForge.GeneratedMSBuildEditorConfig.editorconfig
@@ -503,3 +496,10 @@ C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\SplashScreen.
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\ErrorDialog.g.cs
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\ModInstallDialog.g.cs
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\SplashScreen.g.cs
+C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\bg_video.mp4
+C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\icon.ico
+C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\Minecraft.ttf
+C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\season1.png
+C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\season2.png
+C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\theme.mp3
+C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\StoryForge_Content.g.cs
