@@ -58,34 +58,6 @@ https://image2url.com/r2/default/images/1773663834695-0adab6a9-a8f5-4b37-8254-ff
 - Windows 10 or 11 (64-bit)
 - No install required — fully self-contained
 
----
-
-## Modding
-
-1. Clone the repo
-   ```
-   git clone https://github.com/B0zin0/StoryForge.git
-   ```
-2. Open `StoryForge.csproj` in **Visual Studio 2022**
-3. Press **F5** to build and run
-
----
-
-## Assets
-
-Place these files in the `Assets/` folder next to the `.exe`:
-
-| File | Purpose |
-|---|---|
-| `season1.png` | Season 1 image |
-| `season2.png` | Season 2 image |
-| `icon.ico` | App icon |
-| `theme.mp3` | Background music |
-| `bg_video.mp4` | Background video |
-| `Minecraft.ttf` | Minecraft font |
-
----
-
 ## Credits
 
 Made by **B0zin0**  
