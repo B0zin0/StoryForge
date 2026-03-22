@@ -15,7 +15,7 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 ***[MCSM Mods](https://gamebanana.com/search?_sOrder=best_match&_sSearchString=minecraft+story+mode)***
 > Game Banana offers plenty of mods that are supported with StoryForge!
 
-***[StoryForge v1.1]([https://b0zin0.github.io/])***
+***[StoryForge v1.1](https://b0zin0.github.io/)***
 > A sleek, modern launcher for **Minecraft: Story Mode** Season 1 & Season 2.
 
 ***[MCSM S1](aHR0cHM6Ly9zdGVhbXJpcC5jb20vbWluZWNyYWZ0LXN0b3J5LW1vZGUtY29tcGxldGUtc2Vhc29uLTJxLw==)***
