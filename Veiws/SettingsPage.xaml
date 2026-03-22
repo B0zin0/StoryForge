@@ -7,7 +7,7 @@
         <Border Background="{StaticResource PanelBrush}"
                 BorderBrush="{StaticResource Gold2Brush}"
                 BorderThickness="2"
-                Width="580" VerticalAlignment="Center"
+                Width="620" VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Padding="32,28">
             <StackPanel>
@@ -18,6 +18,19 @@
                            HorizontalAlignment="Center"/>
                 <Rectangle Height="2" Fill="{StaticResource GoldBrush}"
                            Margin="0,8,0,20"/>
+
+                <!-- Auto detect -->
+                <Button Content="Auto-Detect Game Paths"
+                        Style="{StaticResource GoldButton}"
+                        HorizontalAlignment="Stretch"
+                        Padding="0,10" FontSize="12"
+                        Margin="0,0,0,6"
+                        Click="AutoDetect_Click"/>
+                <TextBlock x:Name="DetectLabel" Text=""
+                           Foreground="{StaticResource GreenBrush}"
+                           FontFamily="Segoe UI" FontSize="10"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,16"/>
 
                 <!-- Season 1 path -->
                 <TextBlock Text="Season 1 .exe:" Style="{StaticResource McLabel}"
@@ -85,17 +98,13 @@
                            Margin="0,14,0,8"/>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
                     <Button Content="900×600"  Style="{StaticResource McButton}"
-                            Padding="10,5" Margin="0,0,8,0"
-                            Click="Preset_900"/>
+                            Padding="10,5" Margin="0,0,8,0" Click="Preset_900"/>
                     <Button Content="1280×720" Style="{StaticResource McButton}"
-                            Padding="10,5" Margin="0,0,8,0"
-                            Click="Preset_1280"/>
+                            Padding="10,5" Margin="0,0,8,0" Click="Preset_1280"/>
                     <Button Content="1600×900" Style="{StaticResource McButton}"
-                            Padding="10,5" Margin="0,0,8,0"
-                            Click="Preset_1600"/>
+                            Padding="10,5" Margin="0,0,8,0" Click="Preset_1600"/>
                     <Button Content="Fullscreen" Style="{StaticResource GoldButton}"
-                            Padding="10,5"
-                            Click="Preset_Full"/>
+                            Padding="10,5" Click="Preset_Full"/>
                 </StackPanel>
 
                 <!-- Buttons -->

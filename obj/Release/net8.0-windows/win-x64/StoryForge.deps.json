@@ -680,50 +680,6 @@
             "assemblyVersion": "2.1.0.0",
             "fileVersion": "8.0.1325.6609"
           }
-        },
-        "native": {
-          "Microsoft.DiaSymReader.Native.amd64.dll": {
-            "fileVersion": "14.42.34436.0"
-          },
-          "System.IO.Compression.Native.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "clretwrc.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "clrgc.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "clrjit.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "coreclr.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "createdump.exe": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "hostfxr.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "hostpolicy.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "mscordaccore.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "mscordaccore_amd64_amd64_8.0.1325.6609.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "mscordbi.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "mscorrc.dll": {
-            "fileVersion": "8.0.1325.6609"
-          },
-          "msquic.dll": {
-            "fileVersion": "2.3.5.0"
-          }
         }
       },
       "runtimepack.Microsoft.WindowsDesktop.App.Runtime.win-x64/8.0.13": {

@@ -53,6 +53,12 @@
             "DiscordRichPresence": {
               "target": "Package",
               "version": "[1.0.175, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.13, )",
+              "autoReferenced": true
             }
           },
           "imports": [

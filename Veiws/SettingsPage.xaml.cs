@@ -27,6 +27,25 @@ namespace StoryForge.Views
             _loaded = true;
         }
 
+        private void AutoDetect_Click(object s, RoutedEventArgs e)
+        {
+            DetectLabel.Text = "Searching... this may take a moment.";
+
+            var (s1, s2) = GameFinder.FindPaths();
+
+            if (!string.IsNullOrEmpty(s1)) S1PathBox.Text = s1;
+            if (!string.IsNullOrEmpty(s2)) S2PathBox.Text = s2;
+
+            if (!string.IsNullOrEmpty(s1) && !string.IsNullOrEmpty(s2))
+                DetectLabel.Text = "Found both seasons automatically!";
+            else if (!string.IsNullOrEmpty(s1))
+                DetectLabel.Text = "Found Season 1. Season 2 not found — set it manually.";
+            else if (!string.IsNullOrEmpty(s2))
+                DetectLabel.Text = "Found Season 2. Season 1 not found — set it manually.";
+            else
+                DetectLabel.Text = "Could not find MCSM automatically. Please set paths manually.";
+        }
+
         private void Browse_S1(object s, RoutedEventArgs e) => BrowseExe(S1PathBox);
         private void Browse_S2(object s, RoutedEventArgs e) => BrowseExe(S2PathBox);
 
@@ -40,7 +59,7 @@ namespace StoryForge.Views
             if (dlg.ShowDialog() == true) box.Text = dlg.FileName;
         }
 
-        private void Volume_Changed(object s, RoutedPropertyChangedEventArgs<double> e)
+        private void Volume_Changed(object s, System.Windows.RoutedPropertyChangedEventArgs<double> e)
         {
             if (!_loaded) return;
             VolumeLabel.Text = $"{(int)(VolumeSlider.Value * 100)}%";
@@ -54,7 +73,6 @@ namespace StoryForge.Views
             _cfg.Music = MusicCheck.IsChecked ?? true;
         }
 
-        // Window presets
         private void Preset_900(object s, RoutedEventArgs e)
         {
             if (Window.GetWindow(this) is MainWindow mw) mw.ApplyPreset(900, 600);
@@ -80,6 +98,12 @@ namespace StoryForge.Views
             _cfg.Music  = MusicCheck.IsChecked ?? true;
             _cfg.Volume = VolumeSlider.Value;
             _cfg.Save();
+
+            GameFinder.AutoAttachMods(_cfg.S1Path, System.IO.Path.Combine(
+                System.AppDomain.CurrentDomain.BaseDirectory, "mods"));
+            GameFinder.AutoAttachMods(_cfg.S2Path, System.IO.Path.Combine(
+                System.AppDomain.CurrentDomain.BaseDirectory, "mods"));
+
             SavedLabel.Text = "SAVED!";
         }
 
