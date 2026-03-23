@@ -1,6 +1,8 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
@@ -13,6 +15,18 @@ namespace StoryForge.Views
     {
         private readonly Config _cfg;
         private int _focusedSeason = 1;
+
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        [DllImport("user32.dll")]
+        private static extern bool IsIconic(IntPtr hWnd);
+
+        private const int SW_MAXIMIZE = 3;
+        private const int SW_RESTORE  = 9;
 
         public HomePage()
         {
@@ -93,20 +107,73 @@ namespace StoryForge.Views
             win?.PauseMusic();
             win?.SetDiscordState($"Playing {seasonName}");
 
+            if (_cfg.KillBackgroundApps)
+                ProcessKiller.KillBackgroundApps();
+
+            if (win != null)
+                win.WindowState = WindowState.Minimized;
+
+            var gameDir = Path.GetDirectoryName(path)!;
+
             var proc = new Process
             {
-                StartInfo           = new ProcessStartInfo(path) { UseShellExecute = true },
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName         = path,
+                    WorkingDirectory = gameDir,
+                    UseShellExecute  = true,
+                    WindowStyle      = ProcessWindowStyle.Maximized
+                },
                 EnableRaisingEvents = true
             };
+
             proc.Exited += (_, _) =>
             {
                 Dispatcher.Invoke(() =>
                 {
+                    if (win != null)
+                        win.WindowState = WindowState.Normal;
                     win?.ResumeMusic();
                     win?.SetDiscordState("On the main menu");
                 });
             };
-            proc.Start();
+
+            try
+            {
+                proc.Start();
+
+                // Keep trying to force focus to the game every 2 seconds for 30 seconds
+                // This fights the white screen by keeping the game window active
+                _ = Task.Run(async () =>
+                {
+                    for (int i = 0; i < 15; i++)
+                    {
+                        await Task.Delay(2000);
+                        try
+                        {
+                            proc.Refresh();
+                            if (proc.HasExited) break;
+
+                            var hwnd = proc.MainWindowHandle;
+                            if (hwnd != IntPtr.Zero)
+                            {
+                                ShowWindow(hwnd, SW_MAXIMIZE);
+                                SetForegroundWindow(hwnd);
+                            }
+                        }
+                        catch { }
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                if (win != null)
+                    win.WindowState = WindowState.Normal;
+                win?.ResumeMusic();
+                new ErrorDialog(
+                    $"Failed to launch {seasonName}.\n\n{ex.Message}\n\nTry running StoryForge as Administrator.",
+                    win!).ShowDialog();
+            }
         }
     }
 }

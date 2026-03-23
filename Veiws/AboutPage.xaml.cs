@@ -18,12 +18,15 @@ namespace StoryForge.Views
         {
             InfoItems.ItemsSource = new List<InfoRow>
             {
-                new("Version",     "1.0+"),
-                new("Created by",  "B0zin0"),
-		new("Contributors",  "xd89271"),
-                new("Built with",  "C# + WPF"),
-                new("Supports",    "Season 1 & Season 2 + Mods"),
-                new("Disclaimer",  "Not affiliated with Telltale Games"),
+                new("Version",      "1.1"),
+                new("Made by",      "B0zin0"),
+                new("Contributors", "xd89271"),
+                new("Built with",   "C# + WPF (.NET 8)"),
+                new("Supports",     "MCSM Season 1 & Season 2 + Mods"),
+                new("Studio",       "StoryForge Studio — Open Beta April 2026"),
+                new("Website",      "B0zin0.github.io"),
+                new("Disclaimer",   "Not affiliated with Telltale Games or Mojang"),
+                new("Warning",      "Always back up your saves before importing"),
             };
         }
 

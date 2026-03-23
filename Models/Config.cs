@@ -6,12 +6,13 @@ namespace StoryForge.Models
 {
     public class Config
     {
-        public string S1Path      { get; set; } = "";
-        public string S2Path      { get; set; } = "";
-        public bool   Music       { get; set; } = true;
-        public double Volume      { get; set; } = 0.20;
-        public int    WindowWidth { get; set; } = 1280;
-        public int    WindowHeight{ get; set; } = 720;
+        public string S1Path            { get; set; } = "";
+        public string S2Path            { get; set; } = "";
+        public bool   Music             { get; set; } = true;
+        public double Volume            { get; set; } = 0.20;
+        public int    WindowWidth       { get; set; } = 1280;
+        public int    WindowHeight      { get; set; } = 720;
+        public bool   KillBackgroundApps { get; set; } = false;
 
         private static readonly string FilePath =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");

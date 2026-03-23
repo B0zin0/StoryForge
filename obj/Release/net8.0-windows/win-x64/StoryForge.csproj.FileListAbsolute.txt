@@ -503,3 +503,5 @@ C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\season1.png
 C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\season2.png
 C:\Users\bunzy\StoryForge\bin\Release\net8.0-windows\win-x64\Assets\theme.mp3
 C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\StoryForge_Content.g.cs
+C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\SavesPage.baml
+C:\Users\bunzy\StoryForge\obj\Release\net8.0-windows\win-x64\Veiws\SavesPage.g.cs

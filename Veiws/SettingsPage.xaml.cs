@@ -19,31 +19,32 @@ namespace StoryForge.Views
 
         private void Populate()
         {
-            S1PathBox.Text       = _cfg.S1Path;
-            S2PathBox.Text       = _cfg.S2Path;
-            MusicCheck.IsChecked = _cfg.Music;
-            VolumeSlider.Value   = _cfg.Volume;
-            VolumeLabel.Text     = $"{(int)(_cfg.Volume * 100)}%";
+            S1PathBox.Text          = _cfg.S1Path;
+            S2PathBox.Text          = _cfg.S2Path;
+            MusicCheck.IsChecked    = _cfg.Music;
+            VolumeSlider.Value      = _cfg.Volume;
+            VolumeLabel.Text        = $"{(int)(_cfg.Volume * 100)}%";
+            KillAppsCheck.IsChecked = _cfg.KillBackgroundApps;
             _loaded = true;
         }
 
-        private void AutoDetect_Click(object s, RoutedEventArgs e)
+        private async void AutoDetect_Click(object s, RoutedEventArgs e)
         {
-            DetectLabel.Text = "Searching... this may take a moment.";
+            DetectLabel.Text = "Searching your PC for MCSM...";
 
-            var (s1, s2) = GameFinder.FindPaths();
+            var (s1, s2) = await System.Threading.Tasks.Task.Run(() => GameFinder.FindPaths());
 
             if (!string.IsNullOrEmpty(s1)) S1PathBox.Text = s1;
             if (!string.IsNullOrEmpty(s2)) S2PathBox.Text = s2;
 
             if (!string.IsNullOrEmpty(s1) && !string.IsNullOrEmpty(s2))
-                DetectLabel.Text = "Found both seasons automatically!";
+                DetectLabel.Text = "Found both seasons!";
             else if (!string.IsNullOrEmpty(s1))
-                DetectLabel.Text = "Found Season 1. Season 2 not found — set it manually.";
+                DetectLabel.Text = "Found Season 1 — set Season 2 manually.";
             else if (!string.IsNullOrEmpty(s2))
-                DetectLabel.Text = "Found Season 2. Season 1 not found — set it manually.";
+                DetectLabel.Text = "Found Season 2 — set Season 1 manually.";
             else
-                DetectLabel.Text = "Could not find MCSM automatically. Please set paths manually.";
+                DetectLabel.Text = "Couldn't find MCSM automatically. Set the paths manually below.";
         }
 
         private void Browse_S1(object s, RoutedEventArgs e) => BrowseExe(S1PathBox);
@@ -54,7 +55,7 @@ namespace StoryForge.Views
             var dlg = new OpenFileDialog
             {
                 Filter = "Executable|*.exe",
-                Title  = "Select MCSM executable"
+                Title  = "Find your MCSM executable"
             };
             if (dlg.ShowDialog() == true) box.Text = dlg.FileName;
         }
@@ -93,10 +94,11 @@ namespace StoryForge.Views
 
         private void Save_Click(object s, RoutedEventArgs e)
         {
-            _cfg.S1Path = S1PathBox.Text.Trim();
-            _cfg.S2Path = S2PathBox.Text.Trim();
-            _cfg.Music  = MusicCheck.IsChecked ?? true;
-            _cfg.Volume = VolumeSlider.Value;
+            _cfg.S1Path              = S1PathBox.Text.Trim();
+            _cfg.S2Path              = S2PathBox.Text.Trim();
+            _cfg.Music               = MusicCheck.IsChecked ?? true;
+            _cfg.Volume              = VolumeSlider.Value;
+            _cfg.KillBackgroundApps  = KillAppsCheck.IsChecked ?? false;
             _cfg.Save();
 
             GameFinder.AutoAttachMods(_cfg.S1Path, System.IO.Path.Combine(
@@ -104,7 +106,7 @@ namespace StoryForge.Views
             GameFinder.AutoAttachMods(_cfg.S2Path, System.IO.Path.Combine(
                 System.AppDomain.CurrentDomain.BaseDirectory, "mods"));
 
-            SavedLabel.Text = "SAVED!";
+            SavedLabel.Text = "Saved!";
         }
 
         private void Back_Click(object s, RoutedEventArgs e)

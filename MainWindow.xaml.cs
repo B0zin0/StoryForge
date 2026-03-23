@@ -26,6 +26,7 @@ namespace StoryForge
         {
             InitializeComponent();
 
+            // Apply saved window size
             Width  = AppConfig.WindowWidth;
             Height = AppConfig.WindowHeight;
 
@@ -35,10 +36,12 @@ namespace StoryForge
             Navigate(new HomePage());
         }
 
+        // ── Splash (called from App.xaml.cs before window shows) ─────────
         public static void ShowSplash()
         {
             var splash = new SplashWindow();
             splash.Show();
+            // Auto-close after steps finish (4 steps × 450ms + buffer)
             var timer = new System.Windows.Threading.DispatcherTimer
             {
                 Interval = TimeSpan.FromMilliseconds(2200)
@@ -47,6 +50,7 @@ namespace StoryForge
             timer.Start();
         }
 
+        // ── Music ─────────────────────────────────────────────────────────
         private void StartMusic()
         {
             if (!AppConfig.Music) return;
@@ -73,11 +77,12 @@ namespace StoryForge
             if (AppConfig.Music) _music.Play();
         }
 
+        // ── Discord RPC ───────────────────────────────────────────────────
         private void InitDiscord()
         {
             try
             {
-                _discord = new DiscordRpcClient("1483221024953602261"); // replace with your app id
+                _discord = new DiscordRpcClient("1234567890"); // replace with your app id
                 _discord.Initialize();
                 _discord.SetPresence(new RichPresence
                 {
@@ -86,7 +91,7 @@ namespace StoryForge
                     Assets  = new Assets
                     {
                         LargeImageKey  = "storyforge",
-                        LargeImageText = "StoryForge v1.0+"
+                        LargeImageText = "StoryForge v1.0"
                     },
                     Timestamps = Timestamps.Now
                 });
@@ -103,6 +108,7 @@ namespace StoryForge
             catch { }
         }
 
+        // ── Version checker ───────────────────────────────────────────────
         private async void CheckForUpdate()
         {
             try
@@ -138,6 +144,7 @@ namespace StoryForge
             { UseShellExecute = true });
         }
 
+        // ── Window size presets ───────────────────────────────────────────
         public void ApplyPreset(int w, int h)
         {
             Width  = w;
@@ -147,6 +154,7 @@ namespace StoryForge
             AppConfig.Save();
         }
 
+        // ── Navigation ────────────────────────────────────────────────────
         public void Navigate(System.Windows.Controls.Page page)
         {
             ContentFrame.Opacity = 0;
@@ -156,9 +164,11 @@ namespace StoryForge
         }
 
         private void Nav_About(object s, RoutedEventArgs e)    => Navigate(new AboutPage());
+        private void Nav_Saves(object s, RoutedEventArgs e)    => Navigate(new SavesPage());
         private void Nav_Mods(object s, RoutedEventArgs e)     => Navigate(new ModsPage());
         private void Nav_Settings(object s, RoutedEventArgs e) => Navigate(new SettingsPage());
 
+        // ── Keyboard shortcuts ────────────────────────────────────────────
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
@@ -170,6 +180,7 @@ namespace StoryForge
                 Navigate(new ModsPage());
         }
 
+        // ── Window chrome ─────────────────────────────────────────────────
         private void TopBar_MouseDown(object s, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left) DragMove();

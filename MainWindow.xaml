@@ -46,6 +46,9 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             Margin="0,0,8,0">
+                    <Button Content="SAVES"    Style="{StaticResource NavButton}"
+                            FontFamily="/Assets/#Minecraft" FontSize="10"
+                            Click="Nav_Saves"/>
                     <Button Content="ABOUT"    Style="{StaticResource NavButton}"
                             FontFamily="/Assets/#Minecraft" FontSize="10"
                             Click="Nav_About"/>
