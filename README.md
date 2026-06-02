@@ -10,6 +10,20 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 > Built in C# + WPF.
 
 ---
+## Updates!
+From here on out evey update beyond 1.0+ will be very limited on github.
+
+Q: Why?
+A: It's been getting hard as a solo project to get working updates out esapcailly due to Telltales very very uniqe engine to get certain things to work.
+
+Now, Saves do work but are very limited on how you import or export them aswell as mods a very limited but do infact work from sites like gamebanana they replace in-game files such as dialouge or scripts & etc, but it does in fact work
+
+Q: When will studio come out?
+A: Not sure, each day im still trying to add new things so people from the MCSM com can make their own mods and upload them. More on it at https://b0zin0.github.io/#download
+
+Well thats in for the QNA log, see you on June, 25th for another log!
+
+---
 
 ## Downloads/Links
 ***[MCSM Mods](https://gamebanana.com/search?_sOrder=best_match&_sSearchString=minecraft+story+mode)***
