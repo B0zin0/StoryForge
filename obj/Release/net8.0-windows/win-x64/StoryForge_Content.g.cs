@@ -10,7 +10,6 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/bg_video.mp4")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/icon.ico")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/minecraft.ttf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/season1.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/season2.png")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/theme.mp3")]

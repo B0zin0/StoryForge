@@ -1,13 +1,6 @@
 C:\Users\bunzy\StoryForge\publish\StoryForge.pdb
 C:\Users\bunzy\StoryForge\publish\Assets\bg_video.mp4
-C:\Users\bunzy\StoryForge\publish\Assets\icon.ico
 C:\Users\bunzy\StoryForge\publish\Assets\Minecraft.ttf
 C:\Users\bunzy\StoryForge\publish\Assets\season1.png
-C:\Users\bunzy\StoryForge\publish\Assets\season2.png
 C:\Users\bunzy\StoryForge\publish\Assets\theme.mp3
-C:\Users\bunzy\StoryForge\publish\D3DCompiler_47_cor3.dll
-C:\Users\bunzy\StoryForge\publish\PenImc_cor3.dll
-C:\Users\bunzy\StoryForge\publish\PresentationNative_cor3.dll
-C:\Users\bunzy\StoryForge\publish\vcruntime140_cor3.dll
-C:\Users\bunzy\StoryForge\publish\wpfgfx_cor3.dll
 C:\Users\bunzy\StoryForge\publish\StoryForge.exe

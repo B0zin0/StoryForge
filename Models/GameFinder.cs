@@ -7,8 +7,10 @@ namespace StoryForge.Models
 {
     public static class GameFinder
     {
-        private static readonly string[] S1Executables = { "MinecraftStoryMode.exe", "MCSM.exe", "mc_story_mode.exe" };
-        private static readonly string[] S2Executables = { "MinecraftStoryModeSeason2.exe", "MCSMS2.exe", "mc_story_mode_s2.exe" };
+        private static readonly string[] S1Executables =
+            { "MinecraftStoryMode.exe", "MCSM.exe", "mc_story_mode.exe" };
+        private static readonly string[] S2Executables =
+            { "MinecraftStoryModeSeason2.exe", "MCSMS2.exe", "mc_story_mode_s2.exe" };
 
         private static readonly string[] CommonBasePaths =
         {
@@ -22,6 +24,15 @@ namespace StoryForge.Models
             @"C:\Program Files (x86)\Telltale Games\Minecraft Story Mode - Season Two",
         };
 
+        private static readonly HashSet<string> SkipFolders = new(StringComparer.OrdinalIgnoreCase)
+        {
+            "Windows", "WinSxS", "System32", "SysWOW64",
+            "$Recycle.Bin", "$RECYCLE.BIN", "System Volume Information",
+            "ProgramData", "AppData", "Temp", "tmp",
+            "Recovery", "PerfLogs", "MSOCache",
+            ".git", "node_modules", "__pycache__",
+        };
+
         public static (string s1, string s2) FindPaths()
         {
             var s1 = FindExe(S1Executables, "Season 1");
@@ -31,7 +42,6 @@ namespace StoryForge.Models
 
         private static string FindExe(string[] exeNames, string season)
         {
-            // Check common install paths first
             foreach (var basePath in CommonBasePaths)
                 foreach (var exe in exeNames)
                 {
@@ -39,20 +49,20 @@ namespace StoryForge.Models
                     if (File.Exists(full)) return full;
                 }
 
-            // Check Steam library paths from registry
-            var steamPaths = GetSteamLibraryPaths();
-            foreach (var lib in steamPaths)
+            foreach (var lib in GetSteamLibraryPaths())
                 foreach (var exe in exeNames)
                 {
-                    var full = Path.Combine(lib, exe);
-                    if (File.Exists(full)) return full;
+                    var direct = Path.Combine(lib, exe);
+                    if (File.Exists(direct)) return direct;
 
-                    var withFolder = Path.Combine(lib, "steamapps", "common",
-                        season == "Season 1" ? "Minecraft Story Mode" : "Minecraft Story Mode Season 2", exe);
-                    if (File.Exists(withFolder)) return withFolder;
+                    var inCommon = Path.Combine(lib, "steamapps", "common",
+                        season == "Season 1"
+                            ? "Minecraft Story Mode"
+                            : "Minecraft Story Mode Season 2",
+                        exe);
+                    if (File.Exists(inCommon)) return inCommon;
                 }
 
-            // Search all drives as a last resort
             foreach (var drive in DriveInfo.GetDrives())
             {
                 if (drive.DriveType != DriveType.Fixed) continue;
@@ -60,8 +70,8 @@ namespace StoryForge.Models
                 {
                     foreach (var exe in exeNames)
                     {
-                        var results = SearchDrive(drive.RootDirectory, exe, 4);
-                        if (!string.IsNullOrEmpty(results)) return results;
+                        var result = SearchDrive(drive.RootDirectory, exe, maxDepth: 5);
+                        if (!string.IsNullOrEmpty(result)) return result;
                     }
                 }
                 catch { }
@@ -70,21 +80,25 @@ namespace StoryForge.Models
             return "";
         }
 
-        private static string SearchDrive(DirectoryInfo dir, string exeName, int depth)
+        private static string SearchDrive(DirectoryInfo dir, string exeName, int maxDepth)
         {
-            if (depth == 0) return "";
+            if (maxDepth == 0) return "";
+
+            if (SkipFolders.Contains(dir.Name)) return "";
+
             try
             {
-                foreach (var file in dir.GetFiles(exeName))
+                foreach (var file in dir.GetFiles(exeName, SearchOption.TopDirectoryOnly))
                     return file.FullName;
 
                 foreach (var sub in dir.GetDirectories())
                 {
-                    var result = SearchDrive(sub, exeName, depth - 1);
+                    var result = SearchDrive(sub, exeName, maxDepth - 1);
                     if (!string.IsNullOrEmpty(result)) return result;
                 }
             }
-            catch { }
+            catch { /* Access denied or locked directory — silently skip */ }
+
             return "";
         }
 
@@ -93,28 +107,28 @@ namespace StoryForge.Models
             var paths = new List<string>();
             try
             {
-                var steamKey = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam");
+                var steamKey  = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam");
                 var steamPath = steamKey?.GetValue("SteamPath") as string;
+
                 if (!string.IsNullOrEmpty(steamPath))
                 {
                     paths.Add(steamPath);
-                    var libraryFolders = Path.Combine(steamPath, "steamapps", "libraryfolders.vdf");
-                    if (File.Exists(libraryFolders))
+
+                    var vdf = Path.Combine(steamPath, "steamapps", "libraryfolders.vdf");
+                    if (File.Exists(vdf))
                     {
-                        var lines = File.ReadAllLines(libraryFolders);
-                        foreach (var line in lines)
+                        foreach (var line in File.ReadAllLines(vdf))
                         {
-                            if (line.Contains("\"path\""))
-                            {
-                                var parts = line.Split('"');
-                                if (parts.Length >= 4)
-                                    paths.Add(parts[3].Replace("\\\\", "\\"));
-                            }
+                            if (!line.Contains("\"path\"")) continue;
+                            var parts = line.Split('"');
+                            if (parts.Length >= 4)
+                                paths.Add(parts[3].Replace("\\\\", "\\"));
                         }
                     }
                 }
             }
             catch { }
+
             return paths;
         }
 
@@ -123,14 +137,16 @@ namespace StoryForge.Models
             if (string.IsNullOrEmpty(gameExePath) || !File.Exists(gameExePath)) return;
             if (!Directory.Exists(modsFolder)) return;
 
-            var gameDir = Path.GetDirectoryName(gameExePath)!;
-            var gameModsDir = Path.Combine(gameDir, "mods");
+            var gameModsDir = Path.Combine(Path.GetDirectoryName(gameExePath)!, "mods");
             Directory.CreateDirectory(gameModsDir);
 
             foreach (var mod in Directory.GetFiles(modsFolder))
             {
-                var dest = Path.Combine(gameModsDir, Path.GetFileName(mod));
-                try { File.Copy(mod, dest, overwrite: true); }
+                try
+                {
+                    File.Copy(mod, Path.Combine(gameModsDir, Path.GetFileName(mod)),
+                              overwrite: true);
+                }
                 catch { }
             }
         }

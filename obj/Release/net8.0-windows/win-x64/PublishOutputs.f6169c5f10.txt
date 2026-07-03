@@ -1,0 +1,5 @@
+C:\Users\bunzy\Downloads\StoryForge v1.20.1\StoryForge.pdb
+C:\Users\bunzy\Downloads\StoryForge v1.20.1\Assets\bg_video.mp4
+C:\Users\bunzy\Downloads\StoryForge v1.20.1\Assets\season1.png
+C:\Users\bunzy\Downloads\StoryForge v1.20.1\Assets\theme.mp3
+C:\Users\bunzy\Downloads\StoryForge v1.20.1\StoryForge.exe

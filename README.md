@@ -2,12 +2,21 @@
 
 Legal @2026
 
-### Version: v1.0 (#C) *Still W.I.P*
+### Version: v1.0+ (#C) FULL
 
 Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 
 > A sleek, modern launcher for **Minecraft: Story Mode** Season 1 & Season 2.  
-> Built in C# + WPF. No Python.
+> Built in C# + WPF.
+
+---
+## Updates!
+From here on out evey update beyond 1.0+ will be very limited on github.
+
+Q: Why?
+A: It's been getting hard as a solo project to get working updates out esapcailly due to Telltales very very uniqe engine to get certain things to work.
+
+Now, Saves do work but are very limited on how you import or export them aswell as mods a very limited but do infact work from sites like gamebanana they replace in-game files such as dialouge or scripts & etc, but it does in fact work
 
 ---
 
@@ -15,7 +24,7 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 ***[MCSM Mods](https://gamebanana.com/search?_sOrder=best_match&_sSearchString=minecraft+story+mode)***
 > Game Banana offers plenty of mods that are supported with StoryForge!
 
-***[StoryForge v1.0](https://github.com/B0zin0/StoryForge/releases/latest)***
+***[StoryForge v1.1](https://b0zin0.github.io/)***
 > A sleek, modern launcher for **Minecraft: Story Mode** Season 1 & Season 2.
 
 ***[MCSM S1](aHR0cHM6Ly9zdGVhbXJpcC5jb20vbWluZWNyYWZ0LXN0b3J5LW1vZGUtY29tcGxldGUtc2Vhc29uLTJxLw==)***
@@ -29,22 +38,23 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 
 - One-click launch for Season 1 & Season 2
 - Mod manager — install, view, and remove mods
-- Settings page — set your game paths, toggle music
+- Settings page — set your game paths, toggle music, auto check paths & more!
 - Frameless custom window with drag support
+- And even more so check it out! 
 
 ---
 
 ## How to Use
 
 1. Download the latest release from the link/links above.
-2. Extract the zip — keep `StoryForge.exe` and the `Assets/` folder together.
+2. Extract the zip — keep `StoryForge.exe`
 3. Run `StoryForge.exe`
-4. Click **Settings** and point each season to its `.exe` file.
-5. Click a season to launch the game itself!
-< It might be a huge folder due to C# Api's not being the same as python but its still the same thing.
+4. Click **Settings** and point each season to its `.exe` file and/or Check on Auto ste paths.
+5. Click any season to launch the game itself!
+  < Thank you for all the support!
 ---
 
-## Screenshots
+## Screenshots (OLD)
 
 https://image2url.com/r2/default/images/1773663743803-463e5c98-6f56-4353-a3ec-88a3eabe0a0a.png
 https://image2url.com/r2/default/images/1773663780582-3f9e455d-cba3-452b-865c-d40c81135ddb.png
@@ -58,35 +68,10 @@ https://image2url.com/r2/default/images/1773663834695-0adab6a9-a8f5-4b37-8254-ff
 - Windows 10 or 11 (64-bit)
 - No install required — fully self-contained
 
----
-
-## Modding
-
-1. Clone the repo
-   ```
-   git clone https://github.com/B0zin0/StoryForge.git
-   ```
-2. Open `StoryForge.csproj` in **Visual Studio 2022**
-3. Press **F5** to build and run
-
----
-
-## Assets
-
-Place these files in the `Assets/` folder next to the `.exe`:
-
-| File | Purpose |
-|---|---|
-| `season1.png` | Season 1 image |
-| `season2.png` | Season 2 image |
-| `icon.ico` | App icon |
-| `theme.mp3` | Background music |
-| `bg_video.mp4` | Background video |
-| `Minecraft.ttf` | Minecraft font |
-
----
-
 ## Credits
 
 Made by **B0zin0**  
+Credits to Telltale Modding Group for the Telltale-Script-Editor,
+iMrShadow for the Texture Tool! and many many more!
+
 Not affiliated with Telltale Games or Mojang.

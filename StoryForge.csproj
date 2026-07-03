@@ -9,16 +9,22 @@
     <AssemblyName>StoryForge</AssemblyName>
     <RootNamespace>StoryForge</RootNamespace>
     <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
-    <Version>1.0.0</Version>
-    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <Version>1.20.1</Version>
+    <AssemblyVersion>1.20.1</AssemblyVersion>
+    <FileVersion>1.20.1</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Assets\**\*" CopyToOutputDirectory="PreserveNewest"/>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.IO.Compression" Version="4.3.0"/>
+    <Content Remove="Assets\Minecraft.ttf"/>
+    <Content Include="Assets\**\*" Exclude="Assets\Minecraft.ttf" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest"/>
+    <Resource Include="Assets\Minecraft.ttf"/>
   </ItemGroup>
 
   <ItemGroup>

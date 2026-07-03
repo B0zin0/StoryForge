@@ -1,0 +1,80 @@
+<Window x:Class="StoryForge.Views.ModInstallDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="420" Height="320"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterOwner"
+        Background="Transparent"
+        Topmost="True">
+
+    <Border Background="{StaticResource SurfaceBrush}"
+            BorderBrush="{StaticResource BorderBrush}"
+            BorderThickness="1"
+            CornerRadius="12">
+        <Border.Effect>
+            <DropShadowEffect Color="#000000" BlurRadius="40"
+                              ShadowDepth="0" Opacity="0.8"/>
+        </Border.Effect>
+
+        <Grid Margin="28,24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>  
+                <RowDefinition Height="*"/>    
+                <RowDefinition Height="Auto"/>  
+            </Grid.RowDefinitions>
+
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,20">
+                <TextBlock Text="🧩" FontSize="16" Margin="0,0,10,0"
+                           VerticalAlignment="Center"/>
+                <TextBlock Text="Install Mod"
+                           Foreground="{StaticResource TextBrush}"
+                           FontFamily="Segoe UI" FontWeight="Bold"
+                           FontSize="15" VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="Description" Style="{StaticResource McLabel}"
+                           Margin="0,0,0,5"/>
+                <TextBox x:Name="DescBox"
+                         Style="{StaticResource McTextBox}"
+                         Margin="0,0,0,14"/>
+
+                <TextBlock Text="Version" Style="{StaticResource McLabel}"
+                           Margin="0,0,0,5"/>
+                <TextBox x:Name="VersionBox"
+                         Style="{StaticResource McTextBox}"
+                         Text="1.0"
+                         Margin="0,0,0,14"/>
+
+                <TextBlock Text="Category" Style="{StaticResource McLabel}"
+                           Margin="0,0,0,5"/>
+                <ComboBox x:Name="CategoryBox"
+                          Background="{StaticResource Surface2Brush}"
+                          Foreground="{StaticResource TextBrush}"
+                          BorderBrush="{StaticResource BorderBrush}"
+                          FontFamily="Segoe UI" FontSize="12"
+                          Padding="10,8"
+                          SelectedIndex="0">
+                    <ComboBoxItem Content="Texture"/>
+                    <ComboBoxItem Content="Script"/>
+                    <ComboBoxItem Content="Audio"/>
+                    <ComboBoxItem Content="Other"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal"
+                        HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="Cancel"
+                        Style="{StaticResource McButton}"
+                        Padding="16,8" Margin="0,0,8,0"
+                        Click="Cancel_Click"/>
+                <Button Content="Install"
+                        Style="{StaticResource GoldButton}"
+                        Padding="20,8"
+                        Click="Install_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

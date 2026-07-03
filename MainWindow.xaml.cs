@@ -7,6 +7,10 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+
+using WpfButton = System.Windows.Controls.Button;
+using WpfPage   = System.Windows.Controls.Page;
+
 using DiscordRPC;
 using StoryForge.Models;
 using StoryForge.Views;
@@ -18,176 +22,208 @@ namespace StoryForge
         public static Config        AppConfig { get; private set; } = Config.Load();
         public static ModsMetaStore ModsMeta  { get; private set; } = ModsMetaStore.Load();
 
-        private readonly MediaPlayer   _music  = new();
+        public static bool?   IsUpToDate       { get; private set; } = null;
+        public static string? LatestVersionTag { get; private set; } = null;
+
+        private readonly MediaPlayer      _music   = new();
         private          DiscordRpcClient? _discord;
-        private static readonly HttpClient _http = new();
+        private static readonly HttpClient _http   = new();
+
+        private WpfButton? _activeNavBtn;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // Apply saved window size
+            var ver = Assembly.GetExecutingAssembly().GetName().Version;
+            VersionLabel.Text = ver != null ? $"v{ver.ToString(3)}" : "v1.2.0";
+
             Width  = AppConfig.WindowWidth;
             Height = AppConfig.WindowHeight;
+
+            if (AppConfig.StartMaximized)
+                WindowState = WindowState.Maximized;
 
             StartMusic();
             InitDiscord();
             CheckForUpdate();
-            Navigate(new HomePage());
+
+            Navigate(new HomePage(), BtnHome);
         }
 
-        // ── Splash (called from App.xaml.cs before window shows) ─────────
-        public static void ShowSplash()
-        {
-            var splash = new SplashWindow();
-            splash.Show();
-            // Auto-close after steps finish (4 steps × 450ms + buffer)
-            var timer = new System.Windows.Threading.DispatcherTimer
-            {
-                Interval = TimeSpan.FromMilliseconds(2200)
-            };
-            timer.Tick += (_, _) => { timer.Stop(); splash.Close(); };
-            timer.Start();
-        }
-
-        // ── Music ─────────────────────────────────────────────────────────
         private void StartMusic()
         {
             if (!AppConfig.Music) return;
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                                    "Assets", "theme.mp3");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "theme.mp3");
             if (!File.Exists(path)) return;
-
             _music.Open(new Uri(path));
             _music.Volume      = AppConfig.Volume;
             _music.MediaEnded += (_, _) => { _music.Position = TimeSpan.Zero; _music.Play(); };
             _music.Play();
         }
 
-        public void SetVolume(double v)
-        {
-            _music.Volume      = v;
-            AppConfig.Volume   = v;
-        }
+        public void SetVolume(double v) { _music.Volume = v; AppConfig.Volume = v; }
+        public void PauseMusic()  => _music.Pause();
+        public void ResumeMusic() { if (AppConfig.Music) _music.Play(); }
 
-        public void PauseMusic() => _music.Pause();
-
-        public void ResumeMusic()
-        {
-            if (AppConfig.Music) _music.Play();
-        }
-
-        // ── Discord RPC ───────────────────────────────────────────────────
         private void InitDiscord()
         {
             try
             {
-                _discord = new DiscordRpcClient("1234567890"); // replace with your app id
+                _discord = new DiscordRpcClient("1234567890");
                 _discord.Initialize();
                 _discord.SetPresence(new RichPresence
                 {
-                    Details = "StoryForge Launcher",
-                    State   = "On the main menu",
-                    Assets  = new Assets
+                    Details    = "StoryForge Launcher",
+                    State      = "On the main menu",
+                    Assets     = new DiscordRPC.Assets
                     {
                         LargeImageKey  = "storyforge",
-                        LargeImageText = "StoryForge v1.0"
+                        LargeImageText = "StoryForge v1.2"
                     },
                     Timestamps = Timestamps.Now
                 });
             }
-            catch { /* Discord not running — silently skip */ }
+            catch { }
         }
 
         public void SetDiscordState(string state)
         {
-            try
-            {
-                _discord?.UpdateState(state);
-            }
-            catch { }
+            try { _discord?.UpdateState(state); } catch { }
         }
 
-        // ── Version checker ───────────────────────────────────────────────
+        private static Version? NormalizeVersion(string? raw)
+        {
+            if (string.IsNullOrWhiteSpace(raw)) return null;
+
+            var core  = raw.Split('-', '+')[0].Trim();
+            var parts = core.Split('.');
+
+            var nums = new int[4];
+            for (int i = 0; i < 4; i++)
+                nums[i] = (i < parts.Length && int.TryParse(parts[i], out var n)) ? n : 0;
+
+            return new Version(nums[0], nums[1], nums[2], nums[3]);
+        }
+
         private async void CheckForUpdate()
         {
             try
             {
-                _http.DefaultRequestHeaders.UserAgent
-                     .ParseAdd("StoryForge/1.0");
-
-                var url  = "https://api.github.com/repos/B0zin0/StoryForge/releases/latest";
-                var json = await _http.GetStringAsync(url);
+                _http.DefaultRequestHeaders.UserAgent.ParseAdd("StoryForge/1.2");
+                var json = await _http.GetStringAsync(
+                    "https://api.github.com/repos/B0zin0/StoryForge/releases/latest");
                 using var doc = JsonDocument.Parse(json);
 
-                var latest = doc.RootElement
-                               .GetProperty("tag_name")
-                               .GetString()
-                               ?.TrimStart('v');
+                var latestStr  = doc.RootElement.GetProperty("tag_name").GetString()?.TrimStart('v', 'V');
+                var currentStr = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
 
-                var current = Assembly.GetExecutingAssembly()
-                                      .GetName().Version?.ToString(3);
+                var latestVer  = NormalizeVersion(latestStr);
+                var currentVer = NormalizeVersion(currentStr);
 
-                if (latest != null && latest != current)
+                if (latestVer != null && currentVer != null)
                 {
-                    UpdateBanner.Visibility = Visibility.Visible;
-                    UpdateLabel.Text = $"Update available: v{latest} — click to download";
+                    LatestVersionTag = latestStr;
+
+                    if (latestVer > currentVer)
+                    {
+                        IsUpToDate = false;
+                        Dispatcher.Invoke(() =>
+                        {
+                            UpdateBanner.Visibility = Visibility.Visible;
+                            UpdateLabel.Text = $"v{latestStr} is available — click to download";
+                        });
+                    }
+                    else
+                    {
+                        IsUpToDate = true;
+                        Dispatcher.Invoke(() => UpdateBanner.Visibility = Visibility.Collapsed);
+                    }
                 }
             }
-            catch { /* No internet or rate limited — silently skip */ }
+            catch
+            {
+                IsUpToDate = null;
+            }
         }
 
-        private void UpdateBanner_Click(object s, System.Windows.Input.MouseButtonEventArgs e)
+        private void UpdateBanner_Click(object s, MouseButtonEventArgs e)
         {
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(
-                "https://github.com/B0zin0/StoryForge/releases/latest")
-            { UseShellExecute = true });
+                "https://github.com/B0zin0/StoryForge/releases/latest") { UseShellExecute = true });
         }
 
-        // ── Window size presets ───────────────────────────────────────────
+        private void Discord_Click(object s, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(
+                "https://discord.gg/br5z5a3GS8") { UseShellExecute = true });
+        }
+
+        private void YouTube_Click(object s, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(
+                "https://www.youtube.com/@BOZINOSUP/featured") { UseShellExecute = true });
+        }
+
         public void ApplyPreset(int w, int h)
         {
-            Width  = w;
-            Height = h;
-            AppConfig.WindowWidth  = w;
-            AppConfig.WindowHeight = h;
+            WindowState = WindowState.Normal;
+            Width = w; Height = h;
+            AppConfig.WindowWidth = w; AppConfig.WindowHeight = h;
+            AppConfig.StartMaximized = false;
             AppConfig.Save();
         }
 
-        // ── Navigation ────────────────────────────────────────────────────
-        public void Navigate(System.Windows.Controls.Page page)
+        public void ApplyFullscreenPreset()
+        {
+            WindowState = WindowState.Maximized;
+            AppConfig.StartMaximized = true;
+            AppConfig.Save();
+        }
+
+        public void Navigate(WpfPage page, WpfButton? navBtn = null)
         {
             ContentFrame.Opacity = 0;
             ContentFrame.Navigate(page);
-            var sb = (Storyboard)Resources["PageFadeIn"];
-            sb.Begin(this);
+            ((Storyboard)Resources["PageFadeIn"]).Begin(this);
+            if (navBtn != null) SetActiveNav(navBtn);
         }
 
-        private void Nav_About(object s, RoutedEventArgs e)    => Navigate(new AboutPage());
-        private void Nav_Saves(object s, RoutedEventArgs e)    => Navigate(new SavesPage());
-        private void Nav_Mods(object s, RoutedEventArgs e)     => Navigate(new ModsPage());
-        private void Nav_Settings(object s, RoutedEventArgs e) => Navigate(new SettingsPage());
+        private void SetActiveNav(WpfButton btn)
+        {
+            if (_activeNavBtn != null)
+            {
+                _activeNavBtn.Foreground = (Brush)Application.Current.Resources["MutedBrush"];
+                _activeNavBtn.Background = Brushes.Transparent;
+            }
+            btn.Foreground = (Brush)Application.Current.Resources["GoldBrush"];
+            btn.Background = (Brush)Application.Current.Resources["Surface2Brush"];
+            _activeNavBtn  = btn;
+        }
 
-        // ── Keyboard shortcuts ────────────────────────────────────────────
+        private void Nav_Home(object s, RoutedEventArgs e)     => Navigate(new HomePage(),     BtnHome);
+        private void Nav_About(object s, RoutedEventArgs e)    => Navigate(new AboutPage(),    BtnAbout);
+        private void Nav_Saves(object s, RoutedEventArgs e)    => Navigate(new SavesPage(),    BtnSaves);
+        private void Nav_Mods(object s, RoutedEventArgs e)     => Navigate(new ModsPage(),     BtnMods);
+        private void Nav_Settings(object s, RoutedEventArgs e) => Navigate(new SettingsPage(), BtnSettings);
+
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
-            if (e.Key == Key.Escape)
-                Navigate(new HomePage());
-            else if (e.Key == Key.S && Keyboard.Modifiers == ModifierKeys.None)
-                Navigate(new SettingsPage());
-            else if (e.Key == Key.M && Keyboard.Modifiers == ModifierKeys.None)
-                Navigate(new ModsPage());
+            switch (e.Key)
+            {
+                case Key.Escape: Navigate(new HomePage(), BtnHome); break;
+                case Key.S when Keyboard.Modifiers == ModifierKeys.None: Navigate(new SettingsPage(), BtnSettings); break;
+                case Key.M when Keyboard.Modifiers == ModifierKeys.None: Navigate(new ModsPage(), BtnMods); break;
+            }
         }
 
-        // ── Window chrome ─────────────────────────────────────────────────
         private void TopBar_MouseDown(object s, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left) DragMove();
         }
 
-        private void Minimize_Click(object s, RoutedEventArgs e) =>
-            WindowState = WindowState.Minimized;
+        private void Minimize_Click(object s, RoutedEventArgs e) => WindowState = WindowState.Minimized;
 
         private void Close_Click(object s, RoutedEventArgs e)
         {
