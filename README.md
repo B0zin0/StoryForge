@@ -11,21 +11,20 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 
 ---
 ## Updates!
-<<<<<<< HEAD
+
+## PLEASE VIEW THE "StoryForge_IntroGuide" video in order to see EVERYTHING we have to offer!
+
 From here on out evey update beyond 1.0+ will be very limited on github.
 
 Q: Why?
 A: It's been getting hard as a solo project to get working updates out esapcailly due to Telltales very very uniqe engine to get certain things to work.
 
-Now, Saves do work but are very limited on how you import or export them aswell as mods a very limited but do infact work from sites like gamebanana they replace in-game files such as dialouge or scripts & etc, but it does in fact work
-=======
 [OLD] From here on out evey update beyond 1.0+ will be very limited on github.
 
 Q: What changed in this patch?
 A: Mostly boring backend stuff honestly. Fixed the font not loading right on some machines after a download, fixed Season 2's cover art not showing up for some people, fixed the update checker actually recognizing when you're already current instead of telling you forever, and fixed fullscreen actually staying fullscreen after you restart the app. Nothing flashy, just things that were bugging people.
 
 Well thats in for the QNA log, see you on July, 4th for another log!
->>>>>>> a456a256e9fe9ee8e248fd5c35542fd268fba1a7
 
 ---
 
@@ -33,11 +32,9 @@ Well thats in for the QNA log, see you on July, 4th for another log!
 ***[MCSM Mods](https://gamebanana.com/search?_sOrder=best_match&_sSearchString=minecraft+story+mode)***
 > Game Banana offers plenty of mods that are supported with StoryForge!
 
-<<<<<<< HEAD
 ***[StoryForge v1.1](https://b0zin0.github.io/)***
 =======
 ***[StoryForge v1.20.1](https://b0zin0.github.io/)***
->>>>>>> a456a256e9fe9ee8e248fd5c35542fd268fba1a7
 > A sleek, modern launcher for **Minecraft: Story Mode** Season 1 & Season 2.
 
 ***[MCSM S1](aHR0cHM6Ly9zdGVhbXJpcC5jb20vbWluZWNyYWZ0LXN0b3J5LW1vZGUtY29tcGxldGUtc2Vhc29uLTJxLw==)***
