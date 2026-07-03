@@ -12,7 +12,8 @@ Here's an open-source Launcher + Mod Editer just for MCSM! Made by (@B0Zin0)
 ---
 ## Updates!
 
-## PLEASE VIEW THE "StoryForge_IntroGuide" video in order to see EVERYTHING we have to offer!
+## PLEASE VIEW THE "StoryForge_IntroGuide" video in order to see EVERYTHING we have to offer! 
+Watch here: 
 
 From here on out evey update beyond 1.0+ will be very limited on github.
 
