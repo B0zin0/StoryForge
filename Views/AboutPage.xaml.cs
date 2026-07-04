@@ -12,6 +12,7 @@ namespace StoryForge.Views
         public AboutPage()
         {
             InitializeComponent();
+            this.Title = "About";
             Loaded += (_, _) => Populate();
         }
 

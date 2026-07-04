@@ -1,33 +1,31 @@
+using DiscordRPC;
+using StoryForge.Models;
+using StoryForge.Views;
 using System;
 using System.IO;
 using System.Net.Http;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-
 using WpfButton = System.Windows.Controls.Button;
-using WpfPage   = System.Windows.Controls.Page;
-
-using DiscordRPC;
-using StoryForge.Models;
-using StoryForge.Views;
+using WpfPage = System.Windows.Controls.Page;
 
 namespace StoryForge
 {
     public partial class MainWindow : Window
     {
-        public static Config        AppConfig { get; private set; } = Config.Load();
-        public static ModsMetaStore ModsMeta  { get; private set; } = ModsMetaStore.Load();
+        public static Config AppConfig { get; private set; } = Config.Load();
+        public static ModsMetaStore ModsMeta { get; private set; } = ModsMetaStore.Load();
 
-        public static bool?   IsUpToDate       { get; private set; } = null;
+        public static bool? IsUpToDate { get; private set; } = null;
         public static string? LatestVersionTag { get; private set; } = null;
 
-        private readonly MediaPlayer      _music   = new();
-        private          DiscordRpcClient? _discord;
-        private static readonly HttpClient _http   = new();
+        private readonly MediaPlayer _music = new();
+        private static readonly HttpClient _http = new();
 
         private WpfButton? _activeNavBtn;
 
@@ -38,14 +36,15 @@ namespace StoryForge
             var ver = Assembly.GetExecutingAssembly().GetName().Version;
             VersionLabel.Text = ver != null ? $"v{ver.ToString(3)}" : "v1.2.0";
 
-            Width  = AppConfig.WindowWidth;
+            Width = AppConfig.WindowWidth;
             Height = AppConfig.WindowHeight;
 
             if (AppConfig.StartMaximized)
                 WindowState = WindowState.Maximized;
 
             StartMusic();
-            InitDiscord();
+            RpcClient.Initialize("1522797378162393179");
+            RpcClient.SetPresence("In Launcher", "how r u even seeing this");
             CheckForUpdate();
 
             Navigate(new HomePage(), BtnHome);
@@ -57,46 +56,20 @@ namespace StoryForge
             var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "theme.mp3");
             if (!File.Exists(path)) return;
             _music.Open(new Uri(path));
-            _music.Volume      = AppConfig.Volume;
+            _music.Volume = AppConfig.Volume;
             _music.MediaEnded += (_, _) => { _music.Position = TimeSpan.Zero; _music.Play(); };
             _music.Play();
         }
 
         public void SetVolume(double v) { _music.Volume = v; AppConfig.Volume = v; }
-        public void PauseMusic()  => _music.Pause();
+        public void PauseMusic() => _music.Pause();
         public void ResumeMusic() { if (AppConfig.Music) _music.Play(); }
-
-        private void InitDiscord()
-        {
-            try
-            {
-                _discord = new DiscordRpcClient("1234567890");
-                _discord.Initialize();
-                _discord.SetPresence(new RichPresence
-                {
-                    Details    = "StoryForge Launcher",
-                    State      = "On the main menu",
-                    Assets     = new DiscordRPC.Assets
-                    {
-                        LargeImageKey  = "storyforge",
-                        LargeImageText = "StoryForge v1.2"
-                    },
-                    Timestamps = Timestamps.Now
-                });
-            }
-            catch { }
-        }
-
-        public void SetDiscordState(string state)
-        {
-            try { _discord?.UpdateState(state); } catch { }
-        }
 
         private static Version? NormalizeVersion(string? raw)
         {
             if (string.IsNullOrWhiteSpace(raw)) return null;
 
-            var core  = raw.Split('-', '+')[0].Trim();
+            var core = raw.Split('-', '+')[0].Trim();
             var parts = core.Split('.');
 
             var nums = new int[4];
@@ -115,10 +88,10 @@ namespace StoryForge
                     "https://api.github.com/repos/B0zin0/StoryForge/releases/latest");
                 using var doc = JsonDocument.Parse(json);
 
-                var latestStr  = doc.RootElement.GetProperty("tag_name").GetString()?.TrimStart('v', 'V');
+                var latestStr = doc.RootElement.GetProperty("tag_name").GetString()?.TrimStart('v', 'V');
                 var currentStr = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
 
-                var latestVer  = NormalizeVersion(latestStr);
+                var latestVer = NormalizeVersion(latestStr);
                 var currentVer = NormalizeVersion(currentStr);
 
                 if (latestVer != null && currentVer != null)
@@ -150,19 +123,22 @@ namespace StoryForge
         private void UpdateBanner_Click(object s, MouseButtonEventArgs e)
         {
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(
-                "https://github.com/B0zin0/StoryForge/releases/latest") { UseShellExecute = true });
+                "https://github.com/B0zin0/StoryForge/releases/latest")
+            { UseShellExecute = true });
         }
 
         private void Discord_Click(object s, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(
-                "https://discord.gg/br5z5a3GS8") { UseShellExecute = true });
+                "https://discord.gg/br5z5a3GS8")
+            { UseShellExecute = true });
         }
 
         private void YouTube_Click(object s, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(
-                "https://www.youtube.com/@BOZINOSUP/featured") { UseShellExecute = true });
+                "https://www.youtube.com/@BOZINOSUP/featured")
+            { UseShellExecute = true });
         }
 
         public void ApplyPreset(int w, int h)
@@ -185,6 +161,7 @@ namespace StoryForge
         {
             ContentFrame.Opacity = 0;
             ContentFrame.Navigate(page);
+            RpcClient.SetPresence("In Launcher", $"Viewing {page.Title}");
             ((Storyboard)Resources["PageFadeIn"]).Begin(this);
             if (navBtn != null) SetActiveNav(navBtn);
         }
@@ -198,13 +175,13 @@ namespace StoryForge
             }
             btn.Foreground = (Brush)Application.Current.Resources["GoldBrush"];
             btn.Background = (Brush)Application.Current.Resources["Surface2Brush"];
-            _activeNavBtn  = btn;
+            _activeNavBtn = btn;
         }
 
-        private void Nav_Home(object s, RoutedEventArgs e)     => Navigate(new HomePage(),     BtnHome);
-        private void Nav_About(object s, RoutedEventArgs e)    => Navigate(new AboutPage(),    BtnAbout);
-        private void Nav_Saves(object s, RoutedEventArgs e)    => Navigate(new SavesPage(),    BtnSaves);
-        private void Nav_Mods(object s, RoutedEventArgs e)     => Navigate(new ModsPage(),     BtnMods);
+        private void Nav_Home(object s, RoutedEventArgs e) => Navigate(new HomePage(), BtnHome);
+        private void Nav_About(object s, RoutedEventArgs e) => Navigate(new AboutPage(), BtnAbout);
+        private void Nav_Saves(object s, RoutedEventArgs e) => Navigate(new SavesPage(), BtnSaves);
+        private void Nav_Mods(object s, RoutedEventArgs e) => Navigate(new ModsPage(), BtnMods);
         private void Nav_Settings(object s, RoutedEventArgs e) => Navigate(new SettingsPage(), BtnSettings);
 
         protected override void OnKeyDown(KeyEventArgs e)
@@ -227,7 +204,7 @@ namespace StoryForge
 
         private void Close_Click(object s, RoutedEventArgs e)
         {
-            _discord?.Dispose();
+            RpcClient.Dispose();
             Application.Current.Shutdown();
         }
     }

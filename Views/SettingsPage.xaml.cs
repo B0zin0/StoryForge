@@ -14,6 +14,7 @@ namespace StoryForge.Views
         {
             InitializeComponent();
             _cfg = MainWindow.AppConfig;
+            this.Title = "Settings";
             Loaded += (_, _) => Populate();
         }
 

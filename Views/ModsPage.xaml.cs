@@ -22,6 +22,7 @@ namespace StoryForge.Views
         {
             InitializeComponent();
             _meta = MainWindow.ModsMeta;
+            this.Title = "Mods";
 
             Directory.CreateDirectory(ModsFolder);
             Directory.CreateDirectory(DisabledFolder);

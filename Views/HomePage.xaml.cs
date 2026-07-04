@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using DiscordRPC;
 using StoryForge.Models;
 
 namespace StoryForge.Views
@@ -34,6 +35,8 @@ namespace StoryForge.Views
         {
             InitializeComponent();
             _cfg = MainWindow.AppConfig;
+            this.Title = "Home Page";
+
             Loaded += (_, _) =>
             {
                 BgVideo.Play();
@@ -126,7 +129,7 @@ namespace StoryForge.Views
             }
 
             win?.PauseMusic();
-            win?.SetDiscordState($"Playing {seasonName}");
+            RpcClient.SetPresence("In Game", $"Playing {seasonName}");
 
             if (_cfg.KillBackgroundApps)
                 ProcessKiller.KillBackgroundApps();
@@ -155,7 +158,6 @@ namespace StoryForge.Views
                     if (win != null)
                         win.WindowState = WindowState.Normal;
                     win?.ResumeMusic();
-                    win?.SetDiscordState("On the main menu");
                 });
             };
 

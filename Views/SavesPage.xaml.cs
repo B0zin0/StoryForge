@@ -19,6 +19,7 @@ namespace StoryForge.Views
         public SavesPage()
         {
             InitializeComponent();
+            this.Title = "Saves";
             Loaded += async (_, _) => await RefreshInfo();
         }
 

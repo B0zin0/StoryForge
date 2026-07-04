@@ -2,4 +2,5 @@ bin/
 obj/
 publish/
 PublishOutput/
+.vs/
 *.user
