@@ -158,6 +158,7 @@ namespace StoryForge.Views
                     if (win != null)
                         win.WindowState = WindowState.Normal;
                     win?.ResumeMusic();
+                    RpcClient.SetPresence("In Launcher", "Viewing Home Page"); // this probably isnt a 100% fix, but im assuming a user would be on the home page when the game is closed
                 });
             };
 

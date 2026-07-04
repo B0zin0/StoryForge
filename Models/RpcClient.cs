@@ -10,19 +10,21 @@ namespace StoryForge.Models
 {
     public static class RpcClient
     {
-        private static DiscordRpcClient? client;
+        private static DiscordRpcClient? _client;
+
+        public static DiscordRpcClient? Client { get => _client; }
 
         public static int Initialize(string clientId)
         {
             Dispose();
             try
             {
-                client = new DiscordRpcClient(clientId);
-                client.OnReady += (sender, e) =>
+                _client = new DiscordRpcClient(clientId);
+                _client.OnReady += (sender, e) =>
                 {
                     Debug.WriteLine($"[StoryForge] >> Connected to Discord as {e.User.Username}");
                 };
-                client.Initialize();
+                _client.Initialize();
                 return 0;
             }
             catch (Exception ex)
@@ -32,9 +34,12 @@ namespace StoryForge.Models
             }
         }
 
-        public static void SetPresence(string details, string state, string imageKey = "storyforge_logo", string imageText = "StoryForge Launcher")
+        public static void SetPresence(
+            string details, string state,
+            string largeImageKey = "story_icon", string largeImageText = "StoryForge Launcher",
+            string? smallImageKey = null, string? smallImageText = null)
         {
-            if (client == null)
+            if (_client == null)
             {
                 Debug.WriteLine("[StoryForge] >> Discord RPC client is not initialized.");
                 return;
@@ -42,18 +47,19 @@ namespace StoryForge.Models
 
             try
             {
-                client.SetPresence(new RichPresence()
-                {
-                    Details = details,
-                    State = state,
-                    Assets = new Assets()
+                _client.SetPresence(new RichPresence()
                     {
-                        LargeImageKey = imageKey,
-                        LargeImageText = imageText,
-                        SmallImageKey = imageKey,
-                        SmallImageText = imageText
+                        Details = details,
+                        State = state,
+                        Assets = new Assets()
+                        {
+                            LargeImageKey = largeImageKey,
+                            LargeImageText = largeImageText,
+                            SmallImageKey = smallImageKey ?? largeImageKey,
+                            SmallImageText = smallImageText ?? largeImageText
+                        }
                     }
-                });
+                );
             }
             catch (Exception ex)
             {
@@ -63,11 +69,8 @@ namespace StoryForge.Models
         
         public static void Dispose()
         {
-            if (client != null)
-            {
-                client.Dispose();
-                client = null;
-            }
+            _client?.Dispose();
+            _client = null;
         }
     }
 }
