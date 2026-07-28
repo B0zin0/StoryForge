@@ -4,7 +4,7 @@ Legal @2026
 
 ### Version: v1.0+ (C#) FULL
 
-![StoryForge Main Menu](Storyforge_Banner1.png)
+![StoryForge](Assets/StoryforgeBanner1.png)
 
 Here's an open-source Launcher + Mod Editer just for MC games! Made by (@B0Zin0)
 
