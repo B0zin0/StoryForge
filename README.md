@@ -73,6 +73,7 @@ TBA
 
 Made by **B0zin0/Bozino**  
 Credits to Telltale Modding Group for the Telltale-Script-Editor,
-iMrShadow for the Texture Tool! and many many more!
+iMrShadow for the Texture Tool! 
+and many many more!
 
 < StoryForge is an open-source fan project. It is not affiliated with, endorsed by, or sponsored by Telltale Games, Mojang, or Microsoft. Minecraft: Story Mode and all related names are trademarks of their respective owners.
