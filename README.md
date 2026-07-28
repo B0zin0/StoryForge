@@ -13,6 +13,7 @@ Here's an open-source Launcher + Mod Editer just for MC games! Made by (@B0Zin0)
 
 ---
 ## Updates!
+![StoryForge](Assets/Storyforge_Banner_1_1.png)
 
 ## PLEASE VIEW THE "StoryForge_IntroGuide" video in order to see EVERYTHING we have to offer! 
 Watch here: https://youtu.be/INqvNz9rKD0
@@ -20,6 +21,7 @@ Watch here: https://youtu.be/INqvNz9rKD0
 ---
 
 ## Downloads/Links
+![StoryForge](Assets/Storyforge_Banner_2.png)
 ***[MCSM Mods](https://gamebanana.com/search?_sOrder=best_match&_sSearchString=minecraft+story+mode)***
 > Game Banana offers plenty of mods that are supported with StoryForge!
 
@@ -34,6 +36,7 @@ Watch here: https://youtu.be/INqvNz9rKD0
 ---
 
 ## Features
+![StoryForge](Assets/Storyforge_Banner_3.png)
 
 - One-click launch for Season 1 & Season 2, Minecraft: Legends, Minecraft: Dungeons, and Minecraft: Bedrock.  
 - Mod manager — install, view, and remove mods for ANY game.
@@ -44,6 +47,7 @@ Watch here: https://youtu.be/INqvNz9rKD0
 ---
 
 ## How to Use
+![StoryForge](Assets/Storyforge_Banner_4.png)
 
 1. Download the latest release from the link/links above.
 2. Extract the zip — keep `StoryForge.exe`
@@ -54,11 +58,13 @@ Watch here: https://youtu.be/INqvNz9rKD0
 ---
 
 ## Screenshots
+![StoryForge](Assets/Storyforge_Banner_5.png)
 TBA
 
 ---
 
 ## Requirements
+![StoryForge](Assets/Storyforge_Banner_6.png)
 
 - Windows 10 or 11 (64-bit)
 - No install required — fully self-contained
