@@ -66,7 +66,7 @@ TBA
 ## Requirements
 ![StoryForge](Assets/Storyforge_Banner_6.png)
 
-- Windows 10 or 11 (64-bit)
+- Windows 10 or 11 (64-bit) or linux (any version)
 - No install required — fully self-contained
 
 ## Credits
